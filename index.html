@@ -57,20 +57,7 @@
             color: var(--primary);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo-text-group {
-            display: flex;
-            flex-direction: column;
-            line-height: 1.1;
-        }
-
-        .logo-attribution {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            font-weight: normal;
-            margin-top: 0.15rem;
+            gap: 0.5rem;
         }
 
         .user-nav {
@@ -415,16 +402,8 @@
     </div>
 
     <header>
-        <!-- NEW LOGO AND ATTRIBUTION INSERTED HERE -->
         <div class="logo">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                <path d="M8 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm8 0a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm-4 3l-4-3m8 0l-4 3"/>
-            </svg>
-            <div class="logo-text-group">
-                <span>CL Scanner Pro <span style="font-size: 0.8rem; font-weight: 500; color: var(--text-muted);">(Server Edition)</span></span>
-                <span class="logo-attribution">Built by Megahard and Infinity</span>
-            </div>
+            🛡️ CL Scanner Pro (Server Edition)
         </div>
         <div class="user-nav">
             <div class="user-badge" id="navUserBadge">
@@ -533,15 +512,7 @@
                             formattedUrl = 'https://' + rawUrl;
                         }
 
-                        let parsedObj;
-                        try {
-                            parsedObj = new URL(formattedUrl);
-                        } catch (e) {
-                            alert("Invalid URL structure");
-                            resolve(null);
-                            return;
-                        }
-                        
+                        let parsedObj = new URL(formattedUrl);
                         let hostname = parsedObj.hostname.toLowerCase();
                         let pathname = parsedObj.pathname.toLowerCase();
 
@@ -664,20 +635,18 @@
             server.db.activeTokens[activeTempEmail] = token;
             server.save();
 
-            // Configured EmailJS identifiers
+            // Configured EmailJS identifiers with updated Template ID and corrected 'email' parameter mapping
             const serviceID = "service_nusewys";
             const templateID = "template_oq5uy3x";
 
-            // UPDATED: Added "to_email" just in case your dashboard relies on that default parameter
             const templateParams = {
-                email: activeTempEmail, 
-                to_email: activeTempEmail, 
+                email: activeTempEmail,
                 to_name: activeTempUsername,
                 passcode: token
             };
 
             try {
-                // Dispatches real live email via EmailJS
+                // Dispatches real live email via EmailJS using your corrected template ID and variable name
                 await emailjs.send(serviceID, templateID, templateParams);
                 
                 alert(`Verification code successfully sent to ${activeTempEmail}! Check your inbox.`);
@@ -689,7 +658,7 @@
                 document.getElementById('indicatorStep2').classList.add('active');
             } catch (error) {
                 console.error('EmailJS Dispatch Error:', error);
-                alert('Failed to send email. Check browser console for detailed EmailJS error logs.');
+                alert('Failed to send email. Check console for details.');
             } finally {
                 btn.disabled = false;
                 btn.textContent = 'Request Security Token';
@@ -779,12 +748,7 @@
         }
 
         function openReportModal(scanId) {
-            // Note: Fixed logic checking 'history' array structure
-            let record = null;
-            if (Array.isArray(server.db.history)) {
-                record = server.db.history.find(s => s.id === scanId);
-            }
-
+            const record = server.db.history.history.find(s => s.id === scanId) || server.db.history.find(s => s.id === scanId);
             if (!record) return;
 
             document.getElementById('reportTargetUrl').textContent = `Target: ${record.url}`;
@@ -809,7 +773,7 @@
         }
 
         function exportHistoryCSV() {
-            if (!server.db.history || server.db.history.length === 0) {
+            if (server.db.history.length === 0) {
                 alert('No database history to export.');
                 return;
             }
@@ -836,7 +800,6 @@
             }
         }
 
-        // ---- COMPLETED THE CUT-OFF updateUI() FUNCTION FOR YOU ----
         function updateUI() {
             const user = server.db.user;
             document.getElementById('navUsername').textContent = user.username || 'User';
@@ -848,7 +811,7 @@
                 avatarContainer.textContent = (user.username || 'U').charAt(0).toUpperCase();
             }
 
-            const history = server.db.history || [];
+            const history = server.db.history;
             const total = history.length;
             const safeCount = history.filter(s => s.status === 'safe').length;
             const threatCount = total - safeCount;
@@ -861,18 +824,18 @@
             tbody.innerHTML = '';
 
             if (total === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted); padding: 2rem;">No backend records found. Run a scan to get started.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">No backend records found.</td></tr>`;
                 return;
             }
 
-            history.forEach(record => {
+            history.forEach(item => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${record.timestamp}</td>
-                    <td><span style="color: var(--text-main);">${record.url}</span></td>
-                    <td><span class="badge ${record.status}">${record.status}</span></td>
-                    <td><strong>${record.risk}</strong></td>
-                    <td><button class="secondary" onclick="openReportModal('${record.id}')" style="padding: 0.35rem 0.65rem; font-size: 0.8rem;">Details</button></td>
+                    <td>${item.timestamp}</td>
+                    <td style="word-break: break-all;">${item.url}</td>
+                    <td><span class="badge ${item.status}">${item.status}</span></td>
+                    <td>${item.risk}</td>
+                    <td><button class="secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="openReportModal('${item.id}')">View Report</button></td>
                 `;
                 tbody.appendChild(tr);
             });
