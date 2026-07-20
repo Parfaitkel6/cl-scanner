@@ -40,9 +40,7 @@
   .wrap{max-width:1140px; margin:0 auto; padding:0 32px;}
 
   /* ABOUT PAGE STYLES */
-  #aboutPage {
-    display: block;
-  }
+  #aboutPage { display: block; }
 
   header{
     position:sticky; top:0; z-index:20;
@@ -54,18 +52,16 @@
     display:flex; align-items:center; justify-content:space-between;
   }
   .logo{
-    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.22rem;
-    display:flex; align-items:center; gap:9px; letter-spacing:-0.01em;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.25rem;
+    display:flex; align-items:center; gap:10px; letter-spacing:-0.01em;
   }
-  .logo .mark{
-    width:20px; height:20px; border-radius:5px; background:var(--trust);
-    position:relative; flex-shrink:0;
+  .logo-icon {
+    width: 28px; height: 28px; fill: none; stroke: var(--trust);
+    stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
   }
-  .logo .mark::after{
-    content:""; position:absolute; left:5px; top:8px; width:4px; height:4px;
-    border-left:2px solid var(--paper); border-bottom:2px solid var(--paper);
-    transform:rotate(-45deg);
-  }
+  .logo-text-group { display: flex; flex-direction: column; line-height: 1.1; }
+  .logo-by { font-size: 0.65rem; color: var(--ink-soft); font-family: 'IBM Plex Mono', monospace; font-weight: 400; }
+  
   .navlinks{display:flex; gap:34px; font-size:0.9rem; color:var(--ink-soft);}
   .navlinks a{text-decoration:none; transition:color .2s;}
   .navlinks a:hover{color:var(--ink);}
@@ -334,7 +330,17 @@
 <div id="aboutPage">
   <header>
     <nav>
-      <div class="logo"><span class="mark"></span>CL Scanner</div>
+      <div class="logo">
+        <!-- SVG Shield-Scanner Logo -->
+        <svg class="logo-icon" viewBox="0 0 24 24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+        <div class="logo-text-group">
+          <span>CL Scanner</span>
+          <span class="logo-by">by Megahard & Infinity</span>
+        </div>
+      </div>
       <div class="navlinks">
         <a href="#problem">Why CL Scanner</a>
         <a href="#demo">How it works</a>
@@ -348,7 +354,7 @@
     <div>
       <div class="eyebrow">Website legitimacy, checked in seconds</div>
       <h1>Know if a site is <span class="hl">real</span> before you buy, sign in, or pay.</h1>
-      <p class="lede">CL Scanner uses technology to help you solve website legitimacy issues faster and smarter — checking domain age, certificates, and known scam patterns in one pass.</p>
+      <p class="lede">CL Scanner uses modern heuristics to help you solve website legitimacy issues faster and smarter — checking domain age, certificates, and known scam patterns in one pass.</p>
       <div class="cta-row">
         <button class="btn-primary" onclick="openAuthModal(event, 'signup')">Create Account</button>
         <a class="btn-ghost" href="#demo">See a live demo</a>
@@ -368,7 +374,7 @@
   <div class="strip">
     <div class="wrap">
       <span>Scans run in under 4 seconds</span>
-      <span>Checks certificates, domain age, and blacklists</span>
+      <span>Engineered by Megahard & Infinity</span>
       <span>Save your history with a free account</span>
     </div>
   </div>
@@ -392,8 +398,8 @@
       </div>
       <div class="card">
         <div class="icon">03</div>
-        <h3>No single source of truth</h3>
-        <p>Checking a certificate here, a blacklist there — most people don't have time to piece it together.</p>
+        <h3>Built by Engineers</h3>
+        <p>Developed jointly by Megahard and Infinity to make fast security tools available to everyone.</p>
       </div>
     </div>
   </section>
@@ -422,8 +428,17 @@
   </section>
 
   <footer>
-    <div class="logo"><span class="mark"></span>CL Scanner</div>
-    <div>&copy; 2026 CL Scanner. Built to help you trust what you click.</div>
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 24 24">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        <path d="M9 12l2 2 4-4"></path>
+      </svg>
+      <div class="logo-text-group">
+        <span>CL Scanner</span>
+        <span class="logo-by">by Megahard & Infinity</span>
+      </div>
+    </div>
+    <div>&copy; 2026 CL Scanner. Built by Megahard and Infinity.</div>
   </footer>
 </div>
 
@@ -436,7 +451,7 @@
     <!-- Step 1: Sign up details -->
     <div class="auth-step active" id="authStep1">
       <div class="auth-title">Create your account</div>
-      <div class="auth-sub">Save your scan history and access the scanner.</div>
+      <div class="auth-sub">Save your scan history and access CL Scanner.</div>
       <form id="accountForm" novalidate>
         <div class="field">
           <label for="regName">Full name</label>
@@ -518,7 +533,16 @@
         <div class="dash-role" id="dashRole">—</div>
       </div>
     </div>
-    <button class="dash-logout" id="dashLogout">Log out</button>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <div class="logo" style="font-size:1rem;">
+        <svg class="logo-icon" style="width:22px; height:22px;" viewBox="0 0 24 24">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="M9 12l2 2 4-4"></path>
+        </svg>
+        <span>CL Scanner</span>
+      </div>
+      <button class="dash-logout" id="dashLogout">Log out</button>
+    </div>
   </div>
   <div class="dash-body">
     <div class="dash-welcome" id="dashWelcome">CL Scanner</div>
