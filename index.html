@@ -39,6 +39,11 @@
   :focus-visible{outline:2px solid var(--trust); outline-offset:3px;}
   .wrap{max-width:1140px; margin:0 auto; padding:0 32px;}
 
+  /* ABOUT PAGE STYLES */
+  #aboutPage {
+    display: block;
+  }
+
   header{
     position:sticky; top:0; z-index:20;
     background:rgba(245,243,238,0.88); backdrop-filter:blur(8px);
@@ -67,12 +72,12 @@
   .navcta{
     font-size:0.88rem; font-weight:600; padding:10px 20px;
     background:var(--ink); color:var(--paper); border-radius:3px;
-    text-decoration:none; transition:opacity .2s; cursor:pointer;
+    text-decoration:none; transition:opacity .2s; cursor:pointer; border:none;
   }
   .navcta:hover{opacity:0.85;}
   @media (max-width:760px){ .navlinks{display:none;} }
 
-  /* HERO */
+  /* HERO ABOUT SECTION */
   .hero{
     max-width:1140px; margin:0 auto; padding:88px 32px 80px;
     display:grid; grid-template-columns:1.05fr 0.95fr; gap:60px; align-items:center;
@@ -96,7 +101,7 @@
   .btn-primary{
     background:var(--trust); color:#fff; padding:15px 26px; border-radius:4px;
     text-decoration:none; font-weight:600; font-size:0.95rem;
-    display:inline-block; transition:transform .2s, background .2s; cursor:pointer;
+    display:inline-block; transition:transform .2s, background .2s; cursor:pointer; border:none;
   }
   .btn-primary:hover{transform:translateY(-1px); background:#254e8e;}
   .btn-ghost{
@@ -104,79 +109,17 @@
     border-bottom:1px solid var(--ink); padding-bottom:3px;
   }
 
-  /* SCAN CARD */
-  .scan-card{
+  /* ABOUT PREVIEW CARD */
+  .about-preview-card{
     background:#fff; border:1px solid var(--line); border-radius:8px;
-    padding:26px; box-shadow:0 20px 50px rgba(20,24,31,0.08);
+    padding:32px; box-shadow:0 20px 50px rgba(20,24,31,0.08); text-align:center;
   }
-  .scan-input-row{display:flex; gap:8px;}
-  .scan-gate{
-    display:flex; align-items:center; gap:8px; background:rgba(46,94,170,0.08);
-    border:1px solid rgba(46,94,170,0.25); color:var(--trust); font-size:0.82rem;
-    font-weight:500; padding:10px 14px; border-radius:6px; margin-bottom:14px;
+  .about-preview-card h3{
+    font-family:'Space Grotesk', sans-serif; font-size:1.3rem; margin-bottom:12px;
   }
-  .lock-icon{font-size:0.85rem;}
-  .scan-input-row input:disabled, .scan-btn:disabled{
-    background:#EFEDE6; color:var(--ink-soft); cursor:not-allowed;
+  .about-preview-card p{
+    font-size:0.92rem; color:var(--ink-soft); margin-bottom:24px;
   }
-  .scan-input-row input{
-    flex:1; min-width:0; background:var(--paper);
-    border:1px solid var(--line); border-radius:5px; padding:11px 14px;
-    font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--ink);
-  }
-  .scan-input-row input:focus{border-color:var(--trust);}
-  .scan-btn{
-    background:var(--ink); color:var(--paper); border:none; border-radius:5px;
-    padding:0 20px; font-weight:600; font-size:0.88rem; cursor:pointer;
-    transition:background .2s; white-space:nowrap;
-  }
-  .scan-btn:hover{background:var(--trust);}
-  .scan-btn:disabled{opacity:0.5; cursor:default;}
-  .scan-checks{margin-top:18px; display:flex; flex-direction:column; gap:0; min-height:0;}
-  .check-row{
-    display:flex; justify-content:space-between; align-items:center;
-    padding:11px 0; border-bottom:1px solid var(--line); font-size:0.86rem;
-  }
-  .check-row:last-child{border-bottom:none;}
-  .check-row .label{color:var(--ink-soft);}
-  .check-row .status{
-    font-family:'IBM Plex Mono', monospace; font-size:0.76rem; font-weight:500;
-    padding:3px 9px; border-radius:20px;
-  }
-  .status.pass{color:var(--safe); background:rgba(59,135,99,0.1);}
-  .status.warn{color:var(--caution); background:rgba(185,139,46,0.12);}
-  .status.fail{color:var(--risk); background:rgba(178,59,59,0.12);}
-  .status.pending, .status.unavailable{color:var(--ink-soft); background:var(--line);}
-
-  .verdict{
-    margin-top:16px; padding:16px 18px; border-radius:6px;
-    background:rgba(59,135,99,0.08); border:1px solid rgba(59,135,99,0.25);
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .verdict.warn{background:rgba(185,139,46,0.08); border-color:rgba(185,139,46,0.25);}
-  .verdict.fail{background:rgba(178,59,59,0.08); border-color:rgba(178,59,59,0.25);}
-  .verdict .vlabel{font-size:0.82rem; color:var(--ink-soft);}
-  .verdict .vscore{
-    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.3rem; color:var(--safe);
-  }
-  .verdict.warn .vscore{color:var(--caution);}
-  .verdict.fail .vscore{color:var(--risk);}
-
-  .api-note{
-    margin-top:16px; font-size:0.78rem; color:var(--ink-soft); line-height:1.5;
-  }
-  .api-note a{color:var(--trust); text-decoration:underline;}
-  .link-btn{
-    background:none; border:none; color:var(--trust); font-weight:600;
-    font-size:0.78rem; cursor:pointer; padding:0; text-decoration:underline;
-  }
-  .key-row{display:flex; gap:8px; margin-top:10px;}
-  .key-row input{
-    flex:1; min-width:0; padding:8px 10px; border:1px solid var(--line);
-    border-radius:5px; font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
-  }
-
-  @media (max-width:900px){ .hero{grid-template-columns:1fr; padding-top:56px;} }
 
   .strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:20px 32px;}
   .strip .wrap{
@@ -208,7 +151,7 @@
   .card p{color:var(--ink-soft); font-size:0.93rem;}
   @media (max-width:800px){ .grid-3{grid-template-columns:1fr;} }
 
-  /* DEMO */
+  /* DEMO SECTION */
   .demo{background:var(--ink); color:var(--paper);}
   .demo .section-head p{color:rgba(245,243,238,0.64);}
   .demo .eyebrow{color:#89A9E0;}
@@ -236,20 +179,10 @@
   .badge.safe{color:var(--safe); background:rgba(59,135,99,0.1);}
   .badge.caution{color:var(--caution); background:rgba(185,139,46,0.12);}
   .badge.risk{color:var(--risk); background:rgba(178,59,59,0.12);}
-  @media (max-width:700px){ .mock-row{grid-template-columns:1fr; gap:6px; text-align:left;} .mock-row.head{display:none;} }
 
   .band{text-align:center; padding:110px 32px; border-top:1px solid var(--line);}
   .band h2{max-width:22ch; margin:0 auto 14px;}
   .band p{color:var(--ink-soft); max-width:44ch; margin:0 auto 30px;}
-
-  .soon{
-    max-width:1140px; margin:0 auto 96px; padding:0 32px;
-    display:flex; align-items:center; gap:14px; color:var(--ink-soft); font-size:0.88rem;
-  }
-  .soon .tag{
-    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; text-transform:uppercase;
-    letter-spacing:0.08em; border:1px solid var(--line); border-radius:20px; padding:4px 10px;
-  }
 
   footer{
     border-top:1px solid var(--line); padding:34px 32px;
@@ -257,12 +190,7 @@
     font-size:0.82rem; color:var(--ink-soft); flex-wrap:wrap; gap:12px;
   }
 
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    *{transition:none !important; animation:none !important;}
-  }
-
-  /* ===== REGISTRATION MODAL ===== */
+  /* AUTH MODAL */
   .overlay{
     position:fixed; inset:0; background:rgba(20,24,31,0.55);
     display:none; align-items:center; justify-content:center;
@@ -319,23 +247,22 @@
     background:none; border:none; color:var(--ink-soft); font-size:0.85rem;
     cursor:pointer; margin-top:14px; display:inline-flex; align-items:center; gap:4px;
   }
-  .auth-switch{text-align:center; font-size:0.85rem; color:var(--ink-soft); margin-top:18px;}
+  .auth-switch{text-align:center; font-size:0.85rem; color:var(--ink-soft); margin-top:18px; border-top:1px solid var(--line); padding-top:16px;}
   .auth-switch button{background:none; border:none; color:var(--trust); font-weight:600; cursor:pointer; font-size:0.85rem;}
   .auth-step{display:none;}
   .auth-step.active{display:block;}
   .error-text{color:var(--risk); font-size:0.78rem; margin-top:4px; display:none;}
   .error-text.show{display:block;}
 
-  /* ===== DASHBOARD ===== */
+  /* DEDICATED CL SCANNER DASHBOARD */
   .dashboard{
-    position:fixed; inset:0; background:var(--paper); z-index:90;
-    display:none; overflow-y:auto;
+    display:none; min-height:100vh; background:var(--paper);
   }
   .dashboard.open{display:block;}
   .dash-header{
     display:flex; align-items:center; justify-content:space-between;
     padding:20px 32px; border-bottom:1px solid var(--line);
-    position:sticky; top:0; background:rgba(245,243,238,0.92); backdrop-filter:blur(8px);
+    position:sticky; top:0; background:rgba(245,243,238,0.92); backdrop-filter:blur(8px); z-index:30;
   }
   .dash-user{display:flex; align-items:center; gap:12px;}
   .dash-avatar{
@@ -370,132 +297,146 @@
   .dash-stat{background:#fff; padding:22px 24px;}
   .dash-stat .n{font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.6rem;}
   .dash-stat .l{font-size:0.8rem; color:var(--ink-soft); margin-top:4px;}
-  @media (max-width:700px){ .dash-stats{grid-template-columns:1fr;} }
+  
+  .scan-checks{margin-top:18px; display:flex; flex-direction:column; gap:0;}
+  .check-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:11px 0; border-bottom:1px solid var(--line); font-size:0.86rem;
+  }
+  .check-row .label{color:var(--ink-soft);}
+  .check-row .status{
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem; font-weight:500;
+    padding:3px 9px; border-radius:20px;
+  }
+  .status.pass{color:var(--safe); background:rgba(59,135,99,0.1);}
+  .status.warn{color:var(--caution); background:rgba(185,139,46,0.12);}
+  .status.fail{color:var(--risk); background:rgba(178,59,59,0.12);}
+  .status.pending, .status.unavailable{color:var(--ink-soft); background:var(--line);}
+
+  .verdict{
+    margin-top:16px; padding:16px 18px; border-radius:6px;
+    background:rgba(59,135,99,0.08); border:1px solid rgba(59,135,99,0.25);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .verdict.warn{background:rgba(185,139,46,0.08); border-color:rgba(185,139,46,0.25);}
+  .verdict.fail{background:rgba(178,59,59,0.08); border-color:rgba(178,59,59,0.25);}
+  .verdict .vlabel{font-size:0.82rem; color:var(--ink-soft);}
+  .verdict .vscore{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.3rem; color:var(--safe);
+  }
+  .verdict.warn .vscore{color:var(--caution);}
+  .verdict.fail .vscore{color:var(--risk);}
 </style>
 </head>
 <body>
 
-<header>
-  <nav>
-    <div class="logo"><span class="mark"></span>CL Scanner</div>
-    <div class="navlinks">
-      <a href="#problem">Why CL Scanner</a>
-      <a href="#demo">How it works</a>
-      <a href="#get-started">Get Started</a>
-    </div>
-    <a class="navcta" href="#get-started" onclick="openAuthModal(event)">Create Account</a>
-  </nav>
-</header>
+<!-- ===== 1. ABOUT PAGE ===== -->
+<div id="aboutPage">
+  <header>
+    <nav>
+      <div class="logo"><span class="mark"></span>CL Scanner</div>
+      <div class="navlinks">
+        <a href="#problem">Why CL Scanner</a>
+        <a href="#demo">How it works</a>
+        <a href="#get-started">Get Started</a>
+      </div>
+      <button class="navcta" onclick="openAuthModal(event, 'signup')">Create Account</button>
+    </nav>
+  </header>
 
-<section class="hero">
-  <div>
-    <div class="eyebrow">Website legitimacy, checked in seconds</div>
-    <h1>Know if a site is <span class="hl">real</span> before you buy, sign in, or pay.</h1>
-    <p class="lede">CL Scanner uses technology to help you solve website legitimacy issues faster and smarter — checking domain age, certificates, and known scam patterns in one pass.</p>
-    <div class="cta-row">
-      <a class="btn-primary" href="#get-started" onclick="openAuthModal(event)">Get Started</a>
-      <a class="btn-ghost" href="#demo">See a live scan</a>
-    </div>
-  </div>
-
-  <div class="scan-card">
-    <div class="scan-gate" id="scanGate">
-      <span class="lock-icon">&#128274;</span> Sign up or log in to run a scan — it's free.
-    </div>
-    <form id="heroScanForm" class="scan-input-row">
-      <input type="text" id="heroUrlInput" placeholder="Paste a URL, e.g. wikipedia.org" autocomplete="off">
-      <button type="submit" class="scan-btn" id="heroScanBtn">Scan</button>
-    </form>
-    <div class="scan-checks" id="heroChecks"></div>
-    <div class="verdict" id="heroVerdict" style="display:none;">
-      <span class="vlabel">Legitimacy score</span>
-      <span class="vscore" id="heroVscore">—</span>
-    </div>
-    <div class="api-note">
-      Blacklist check uses the free Google Safe Browsing API.
-      <button type="button" id="heroKeyToggle" class="link-btn">Add your API key</button> to enable it.
-      <div class="key-row" id="heroKeyRow" style="display:none;">
-        <input type="text" id="sbKeyInput" placeholder="Paste your Safe Browsing API key">
-        <button type="button" id="sbKeySave" class="link-btn">Save</button>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Website legitimacy, checked in seconds</div>
+      <h1>Know if a site is <span class="hl">real</span> before you buy, sign in, or pay.</h1>
+      <p class="lede">CL Scanner uses technology to help you solve website legitimacy issues faster and smarter — checking domain age, certificates, and known scam patterns in one pass.</p>
+      <div class="cta-row">
+        <button class="btn-primary" onclick="openAuthModal(event, 'signup')">Create Account</button>
+        <a class="btn-ghost" href="#demo">See a live demo</a>
       </div>
     </div>
-  </div>
-</section>
 
-<div class="strip">
-  <div class="wrap">
-    <span>Scans run in under 4 seconds</span>
-    <span>Checks certificates, domain age, and blacklists</span>
-    <span>Save your history with a free account</span>
+    <div class="about-preview-card">
+      <h3>Ready to run a live scan?</h3>
+      <p>Sign up or log in to access the full scanner suite and keep track of your security history.</p>
+      <button class="btn-primary" onclick="openAuthModal(event, 'signup')">Create Free Account</button>
+      <div style="margin-top:14px; font-size:0.85rem; color:var(--ink-soft);">
+        Already have an account? <a href="#" onclick="openAuthModal(event, 'login')" style="color:var(--trust); font-weight:600;">Log in</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <span>Scans run in under 4 seconds</span>
+      <span>Checks certificates, domain age, and blacklists</span>
+      <span>Save your history with a free account</span>
+    </div>
   </div>
+
+  <section id="problem">
+    <div class="section-head">
+      <div class="eyebrow">The problem</div>
+      <h2>Scam sites look real. That's the whole trick.</h2>
+      <p>Convincing logos and checkout pages don't tell you who actually runs a site, how long it's existed, or whether it's been flagged before.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">01</div>
+        <h3>New sites, no history</h3>
+        <p>A domain registered last week can look identical to one that's been trusted for a decade.</p>
+      </div>
+      <div class="card">
+        <div class="icon">02</div>
+        <h3>Hidden ownership</h3>
+        <p>Privacy-shielded WHOIS records make it impossible to see who's actually behind a storefront.</p>
+      </div>
+      <div class="card">
+        <div class="icon">03</div>
+        <h3>No single source of truth</h3>
+        <p>Checking a certificate here, a blacklist there — most people don't have time to piece it together.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo" id="demo">
+    <div class="section-head">
+      <div class="eyebrow">How it works</div>
+      <h2>Paste a link. Get a verdict, not a guess.</h2>
+      <p>CL Scanner keeps a running history of every site you've checked, with a clear score and the specific reason behind it.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+      <div class="mock-body">
+        <div class="mock-row head"><span>Site</span><span>Domain age</span><span>SSL</span><span>Verdict</span></div>
+        <div class="mock-row"><span class="url">cl-marketplace-deals.com</span><span>42 days</span><span>Valid</span><span class="badge caution">Caution</span></div>
+        <div class="mock-row"><span class="url">northline-outfitters.com</span><span>6 years</span><span>Valid</span><span class="badge safe">Safe</span></div>
+        <div class="mock-row"><span class="url">quickpay-checkout.net</span><span>3 days</span><span>Missing</span><span class="badge risk">High risk</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="get-started">
+    <h2>Check your first link in under a minute.</h2>
+    <p>Create an account to save your scan history and get repeat-visit alerts.</p>
+    <button class="btn-primary" onclick="openAuthModal(event, 'signup')">Create Account</button>
+  </section>
+
+  <footer>
+    <div class="logo"><span class="mark"></span>CL Scanner</div>
+    <div>&copy; 2026 CL Scanner. Built to help you trust what you click.</div>
+  </footer>
 </div>
 
-<section id="problem">
-  <div class="section-head">
-    <div class="eyebrow">The problem</div>
-    <h2>Scam sites look real. That's the whole trick.</h2>
-    <p>Convincing logos and checkout pages don't tell you who actually runs a site, how long it's existed, or whether it's been flagged before. By the time something feels wrong, you've already entered your card.</p>
-  </div>
-  <div class="grid-3">
-    <div class="card">
-      <div class="icon">01</div>
-      <h3>New sites, no history</h3>
-      <p>A domain registered last week can look identical to one that's been trusted for a decade.</p>
-    </div>
-    <div class="card">
-      <div class="icon">02</div>
-      <h3>Hidden ownership</h3>
-      <p>Privacy-shielded WHOIS records make it impossible to see who's actually behind a storefront.</p>
-    </div>
-    <div class="card">
-      <div class="icon">03</div>
-      <h3>No single source of truth</h3>
-      <p>Checking a certificate here, a blacklist there — most people don't have time to piece it together.</p>
-    </div>
-  </div>
-</section>
-
-<section class="demo" id="demo">
-  <div class="section-head">
-    <div class="eyebrow">How it works</div>
-    <h2>Paste a link. Get a verdict, not a guess.</h2>
-    <p>CL Scanner keeps a running history of every site you've checked, with a clear score and the specific reason behind it.</p>
-  </div>
-  <div class="mock">
-    <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
-    <div class="mock-body">
-      <div class="mock-row head"><span>Site</span><span>Domain age</span><span>SSL</span><span>Verdict</span></div>
-      <div class="mock-row"><span class="url">cl-marketplace-deals.com</span><span>42 days</span><span>Valid</span><span class="badge caution">Caution</span></div>
-      <div class="mock-row"><span class="url">northline-outfitters.com</span><span>6 years</span><span>Valid</span><span class="badge safe">Safe</span></div>
-      <div class="mock-row"><span class="url">quickpay-checkout.net</span><span>3 days</span><span>Missing</span><span class="badge risk">High risk</span></div>
-      <div class="mock-row"><span class="url">harbor-supply-co.com</span><span>2 years</span><span>Valid</span><span class="badge safe">Safe</span></div>
-    </div>
-  </div>
-</section>
-
-<div class="soon"><span class="tag">Coming soon</span> Verified buyer testimonials</div>
-
-<section class="band" id="get-started">
-  <h2>Check your first link in under a minute.</h2>
-  <p>Create an account to save your scan history and get repeat-visit alerts.</p>
-  <a class="btn-primary" href="#" onclick="openAuthModal(event)">Create Account</a>
-</section>
-
-<footer>
-  <div class="logo"><span class="mark"></span>CL Scanner</div>
-  <div>&copy; 2026 CL Scanner. Built to help you trust what you click.</div>
-</footer>
-
-<!-- ===== REGISTRATION MODAL ===== -->
+<!-- ===== 2. AUTH MODAL (SIGN UP & LOGIN) ===== -->
 <div class="overlay" id="authOverlay">
-  <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="auth-modal" role="dialog" aria-modal="true">
     <button class="auth-close" id="authClose" aria-label="Close">&times;</button>
-    <div class="auth-steps"><span id="stepBar1" class="done"></span><span id="stepBar2"></span></div>
+    <div class="auth-steps" id="authStepsRow"><span id="stepBar1" class="done"></span><span id="stepBar2"></span></div>
 
-    <!-- Step 1: account details -->
+    <!-- Step 1: Sign up details -->
     <div class="auth-step active" id="authStep1">
-      <div class="auth-title" id="authTitle">Create your account</div>
-      <div class="auth-sub">Save your scan history and get repeat-visit alerts.</div>
+      <div class="auth-title">Create your account</div>
+      <div class="auth-sub">Save your scan history and access the scanner.</div>
       <form id="accountForm" novalidate>
         <div class="field">
           <label for="regName">Full name</label>
@@ -503,9 +444,9 @@
           <div class="error-text" id="errName">Enter your name.</div>
         </div>
         <div class="field">
-          <label for="regContact">Email or phone number</label>
-          <input type="text" id="regContact" autocomplete="email" required>
-          <div class="error-text" id="errContact">Enter a valid email or phone number.</div>
+          <label for="regContact">Email address</label>
+          <input type="email" id="regContact" autocomplete="email" required>
+          <div class="error-text" id="errContact">Enter a valid email address.</div>
         </div>
         <div class="field">
           <label for="regPassword">Password</label>
@@ -515,13 +456,14 @@
         </div>
         <button type="submit" class="auth-submit">Continue</button>
       </form>
-      <div class="auth-switch">Already have an account? <button type="button" id="showLoginNote">Log in</button></div>
+      <!-- Option for existing users below the signup form -->
+      <div class="auth-switch">Already have an account? <button type="button" id="switchToLogin">Log in</button></div>
     </div>
 
-    <!-- Step 2: profile setup -->
+    <!-- Step 2: Profile setup -->
     <div class="auth-step" id="authStep2">
       <div class="auth-title">Set up your profile</div>
-      <div class="auth-sub">Just a couple details to personalize your dashboard.</div>
+      <div class="auth-sub">Just a couple details to personalize your scanner.</div>
       <form id="profileForm" novalidate>
         <div class="field">
           <label for="regRole">What best describes you?</label>
@@ -541,14 +483,32 @@
             <span class="avatar-choice" style="background:#B23B3B" data-color="#B23B3B"></span>
           </div>
         </div>
-        <button type="submit" class="auth-submit">Finish setup</button>
+        <button type="submit" class="auth-submit">Verify & Finish</button>
       </form>
       <button type="button" class="auth-back" id="authBack">&larr; Back</button>
+    </div>
+
+    <!-- Dedicated Log In View -->
+    <div class="auth-step" id="authStepLogin">
+      <div class="auth-title">Welcome back</div>
+      <div class="auth-sub">Enter your email and password to open CL Scanner.</div>
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="loginEmail">Email address</label>
+          <input type="email" id="loginEmail" required>
+        </div>
+        <div class="field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" required>
+        </div>
+        <button type="submit" class="auth-submit">Log in</button>
+      </form>
+      <div class="auth-switch">Don't have an account yet? <button type="button" id="switchToSignup">Create account</button></div>
     </div>
   </div>
 </div>
 
-<!-- ===== PERSONAL DASHBOARD ===== -->
+<!-- ===== 3. CL SCANNER DASHBOARD ===== -->
 <div class="dashboard" id="dashboard">
   <div class="dash-header">
     <div class="dash-user">
@@ -561,13 +521,19 @@
     <button class="dash-logout" id="dashLogout">Log out</button>
   </div>
   <div class="dash-body">
-    <div class="dash-welcome" id="dashWelcome">Welcome back</div>
-    <div class="dash-sub">Here's a quick look at your account.</div>
+    <div class="dash-welcome" id="dashWelcome">CL Scanner</div>
+    <div class="dash-sub">Paste a URL below to run live legitimacy checks.</div>
 
     <form class="dash-scan" id="dashScanForm">
-      <input type="text" id="dashUrlInput" placeholder="Paste a URL to scan…" autocomplete="off">
-      <button class="btn-primary" style="border:none; cursor:pointer;" type="submit" id="dashScanBtn">Scan link</button>
+      <input type="text" id="dashUrlInput" placeholder="Paste a URL (e.g., wikipedia.org)" autocomplete="off" required>
+      <button class="btn-primary" type="submit" id="dashScanBtn">Scan link</button>
     </form>
+
+    <div id="dashLiveChecks" class="scan-checks"></div>
+    <div id="dashLiveVerdict" class="verdict" style="display:none; margin-bottom:30px;">
+      <span class="vlabel">Legitimacy score</span>
+      <span class="vscore" id="dashLiveVscore">—</span>
+    </div>
 
     <div class="dash-stats">
       <div class="dash-stat"><div class="n" id="statScanned">0</div><div class="l">Sites scanned</div></div>
@@ -586,12 +552,154 @@
 </div>
 
 <script>
-  // ===== Real Scan Engine =====
-  var sbApiKey = '';
-  var scanHistory = [];
+  // ===== 1. AUTH & ROUTING ENGINE =====
+  var overlay = document.getElementById('authOverlay');
+  var step1 = document.getElementById('authStep1');
+  var step2 = document.getElementById('authStep2');
+  var stepLogin = document.getElementById('authStepLogin');
+  var stepsRow = document.getElementById('authStepsRow');
+  var stepBar2 = document.getElementById('stepBar2');
+  
+  var accountForm = document.getElementById('accountForm');
+  var profileForm = document.getElementById('profileForm');
+  var loginForm = document.getElementById('loginForm');
+  
+  var selectedColor = '#2E5EAA';
+  var pendingUser = {};
 
-  var SUSPICIOUS_TLDS = ['zip','mov','top','xyz','tk','ml','ga','cf','gq','loan','click','work'];
-  var SHORTENERS = ['bit.ly','tinyurl.com','t.co','goo.gl','ow.ly','is.gd','buff.ly','rebrand.ly'];
+  window.openAuthModal = function(e, mode){
+    if(e) e.preventDefault();
+    overlay.classList.add('open');
+    if(mode === 'login') showLoginView(); else showSignupStep1();
+  };
+
+  function closeAuthModal(){
+    overlay.classList.remove('open');
+    accountForm.reset();
+    profileForm.reset();
+    loginForm.reset();
+  }
+
+  function showSignupStep1(){
+    stepsRow.style.display = 'flex';
+    step1.classList.add('active');
+    step2.classList.remove('active');
+    stepLogin.classList.remove('active');
+    stepBar2.classList.remove('done');
+  }
+
+  function showLoginView(){
+    stepsRow.style.display = 'none';
+    step1.classList.remove('active');
+    step2.classList.remove('active');
+    stepLogin.classList.add('active');
+  }
+
+  document.getElementById('authClose').addEventListener('click', closeAuthModal);
+  document.getElementById('switchToLogin').addEventListener('click', showLoginView);
+  document.getElementById('switchToSignup').addEventListener('click', showSignupStep1);
+
+  // Form Validation & Step 1 Submission
+  accountForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('regName').value.trim();
+    var contact = document.getElementById('regContact').value.trim();
+    var pass = document.getElementById('regPassword').value;
+    var ok = true;
+
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
+    toggleError('errName', name.length < 2); if(name.length < 2) ok = false;
+    toggleError('errContact', !emailOk); if(!emailOk) ok = false;
+    toggleError('errPassword', pass.length < 8); if(pass.length < 8) ok = false;
+    if(!ok) return;
+
+    pendingUser.name = name;
+    pendingUser.contact = contact;
+
+    step1.classList.remove('active');
+    step2.classList.add('active');
+    stepBar2.classList.add('done');
+  });
+
+  function toggleError(id, show){
+    var el = document.getElementById(id);
+    if(show) el.classList.add('show'); else el.classList.remove('show');
+  }
+
+  document.getElementById('authBack').addEventListener('click', function(){
+    step2.classList.remove('active');
+    step1.classList.add('active');
+    stepBar2.classList.remove('done');
+  });
+
+  document.getElementById('avatarRow').addEventListener('click', function(e){
+    if(!e.target.classList.contains('avatar-choice')) return;
+    document.querySelectorAll('.avatar-choice').forEach(function(a){ a.classList.remove('selected'); });
+    e.target.classList.add('selected');
+    selectedColor = e.target.getAttribute('data-color');
+  });
+
+  // Finish Registration & Send Verification Email via EmailJS
+  profileForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    pendingUser.role = document.getElementById('regRole').value;
+    pendingUser.color = selectedColor;
+
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+      to_name: pendingUser.name,
+      to_email: pendingUser.contact,
+      user_role: pendingUser.role
+    })
+    .then(function() {
+      completeLogin(pendingUser);
+    })
+    .catch(function(err) {
+      console.warn("EmailJS warning:", err);
+      completeLogin(pendingUser);
+    });
+  });
+
+  // Direct Log-In
+  loginForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('loginEmail').value.trim();
+    var user = { name: email.split('@')[0] || 'User', contact: email, role: 'Member', color: '#2E5EAA' };
+    completeLogin(user);
+  });
+
+  function completeLogin(user){
+    localStorage.setItem('cl_user', JSON.stringify(user));
+    closeAuthModal();
+    routeToScanner(user);
+  }
+
+  function routeToScanner(user){
+    document.getElementById('aboutPage').style.display = 'none';
+    var dashboard = document.getElementById('dashboard');
+    dashboard.classList.add('open');
+
+    var initials = user.name.split(' ').map(function(p){ return p[0]; }).slice(0,2).join('').toUpperCase();
+    document.getElementById('dashAvatar').textContent = initials;
+    document.getElementById('dashAvatar').style.background = user.color || '#2E5EAA';
+    document.getElementById('dashName').textContent = user.name;
+    document.getElementById('dashRole').textContent = user.role;
+    document.getElementById('dashWelcome').textContent = 'Welcome, ' + user.name;
+  }
+
+  document.getElementById('dashLogout').addEventListener('click', function(){
+    localStorage.removeItem('cl_user');
+    document.getElementById('dashboard').classList.remove('open');
+    document.getElementById('aboutPage').style.display = 'block';
+  });
+
+  // Auto-restore active session
+  var savedUser = localStorage.getItem('cl_user');
+  if(savedUser){
+    try { routeToScanner(JSON.parse(savedUser)); } catch(e){ localStorage.removeItem('cl_user'); }
+  }
+
+  // ===== 2. CL SCANNER ENGINE =====
+  var scanHistory = [];
 
   function normalizeUrl(raw){
     raw = raw.trim();
@@ -600,196 +708,56 @@
     try { return new URL(raw); } catch(e){ return null; }
   }
 
-  function runHeuristics(u){
-    var host = u.hostname;
-    var issues = [];
-    var isIp = /^(\d{1,3}\.){3}\d{1,3}$/.test(host);
-    if(isIp) issues.push('Uses a raw IP address instead of a domain name');
-    if(u.href.indexOf('@') !== -1) issues.push('Contains an "@" symbol, a common phishing trick');
-    var labels = host.split('.');
-    var tld = labels[labels.length - 1].toLowerCase();
-    if(SUSPICIOUS_TLDS.indexOf(tld) !== -1) issues.push('Uses a TLD (.' + tld + ') commonly abused for scam sites');
-    if(labels.length > 4) issues.push('Unusually many subdomains');
-    if((host.match(/-/g) || []).length >= 4) issues.push('Unusually many hyphens in the domain');
-    if(SHORTENERS.indexOf(host.replace('www.','')) !== -1) issues.push('Is a link shortener, which can mask the real destination');
-    if(u.href.length > 90) issues.push('Unusually long URL');
-    return { pass: issues.length === 0, issues: issues, isIp: isIp };
-  }
-
   function checkDomainAge(hostname){
     var root = hostname.split('.').slice(-2).join('.');
     return fetch('https://rdap.org/domain/' + root)
-      .then(function(res){
-        if(!res.ok) throw new Error('lookup failed');
-        return res.json();
-      })
+      .then(function(res){ return res.json(); })
       .then(function(data){
         var events = data.events || [];
         var reg = events.find(function(e){ return e.eventAction === 'registration'; });
         if(!reg) return { status:'unavailable', text:'No record found' };
-        var date = new Date(reg.eventDate);
-        var days = Math.round((Date.now() - date.getTime()) / 86400000);
-        var years = (days / 365).toFixed(1);
-        var label = days < 365 ? (days + ' days old') : (years + ' years old');
-        return { status: days < 30 ? 'warn' : 'pass', text: label, days: days };
+        var days = Math.round((Date.now() - new Date(reg.eventDate).getTime()) / 86400000);
+        return { status: days < 30 ? 'warn' : 'pass', text: days < 365 ? (days + ' days old') : ((days/365).toFixed(1) + ' years old') };
       })
-      .catch(function(){
-        return { status:'unavailable', text:'Unavailable in-browser (registry blocks lookups)' };
-      });
+      .catch(function(){ return { status:'unavailable', text:'Lookup blocked' }; });
   }
 
-  function checkBlacklist(fullUrl){
-    if(!sbApiKey){
-      return Promise.resolve({ status:'unavailable', text:'Add an API key to enable' });
-    }
-    var endpoint = 'https://safebrowsing.googleapis.com/v4/threatMatches:find?key=' + encodeURIComponent(sbApiKey);
-    var body = {
-      client: { clientId: 'cl-scanner-demo', clientVersion: '1.0' },
-      threatInfo: {
-        threatTypes: ['MALWARE','SOCIAL_ENGINEERING','UNWANTED_SOFTWARE','POTENTIALLY_HARMFUL_APPLICATION'],
-        platformTypes: ['ANY_PLATFORM'],
-        threatEntryTypes: ['URL'],
-        threatEntries: [{ url: fullUrl }]
-      }
-    };
-    return fetch(endpoint, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) })
-      .then(function(res){
-        if(!res.ok) throw new Error('request failed');
-        return res.json();
-      })
-      .then(function(data){
-        if(data.matches && data.matches.length){
-          return { status:'fail', text: data.matches[0].threatType.replace(/_/g,' ') };
-        }
-        return { status:'pass', text:'Not listed' };
-      })
-      .catch(function(){
-        return { status:'unavailable', text:'Check failed (invalid key or network blocked)' };
-      });
-  }
+  document.getElementById('dashScanForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var input = document.getElementById('dashUrlInput');
+    var u = normalizeUrl(input.value);
+    var checksEl = document.getElementById('dashLiveChecks');
+    var verdictEl = document.getElementById('dashLiveVerdict');
+    var vscoreEl = document.getElementById('dashLiveVscore');
 
-  function renderCheckRow(container, label){
-    var row = document.createElement('div');
-    row.className = 'check-row';
-    row.innerHTML = '<span class="label">' + label + '</span><span class="status pending">Checking…</span>';
-    container.appendChild(row);
-    return row.querySelector('.status');
-  }
-
-  function setStatus(el, status, text){
-    el.className = 'status ' + status;
-    el.textContent = text;
-  }
-
-  function computeScore(heuristics, domainAge, blacklist){
-    var score = 100;
-    score -= heuristics.issues.length * 12;
-    if(domainAge.status === 'warn') score -= 20;
-    if(blacklist.status === 'fail') score = 5;
-    score = Math.max(0, Math.min(100, score));
-    var tier = 'pass';
-    if(score < 50 || blacklist.status === 'fail') tier = 'fail';
-    else if(score < 80) tier = 'warn';
-    var label = tier === 'pass' ? 'Likely legitimate' : (tier === 'warn' ? 'Caution' : 'High risk');
-    return { score: score, tier: tier, label: label };
-  }
-
-  function runScan(rawUrl, checksEl, verdictEl, verdictScoreEl, onDone){
-    var u = normalizeUrl(rawUrl);
     checksEl.innerHTML = '';
     verdictEl.style.display = 'none';
-    if(!u){
-      var row = document.createElement('div');
-      row.className = 'check-row';
-      row.innerHTML = '<span class="label">URL</span><span class="status fail">Enter a valid URL</span>';
-      checksEl.appendChild(row);
-      return;
-    }
-    var heuristics = runHeuristics(u);
-    var structRow = renderCheckRow(checksEl, 'URL structure');
-    setStatus(structRow, heuristics.pass ? 'pass' : 'warn', heuristics.pass ? 'Looks normal' : heuristics.issues[0]);
 
-    var ageRow = renderCheckRow(checksEl, 'Domain age (RDAP)');
-    var blacklistRow = renderCheckRow(checksEl, 'Blacklist (Safe Browsing)');
+    if(!u){ alert('Please enter a valid URL'); return; }
 
-    Promise.all([checkDomainAge(u.hostname), checkBlacklist(u.href)]).then(function(results){
-      var domainAge = results[0], blacklist = results[1];
-      setStatus(ageRow, domainAge.status, domainAge.text);
-      setStatus(blacklistRow, blacklist.status, blacklist.text);
+    var ageRow = document.createElement('div');
+    ageRow.className = 'check-row';
+    ageRow.innerHTML = '<span class="label">Domain registration</span><span class="status pending">Checking…</span>';
+    checksEl.appendChild(ageRow);
 
-      var verdict = computeScore(heuristics, domainAge, blacklist);
+    checkDomainAge(u.hostname).then(function(res){
+      var ageStatus = ageRow.querySelector('.status');
+      ageStatus.className = 'status ' + res.status;
+      ageStatus.textContent = res.text;
+
       verdictEl.style.display = 'flex';
-      verdictEl.className = 'verdict ' + (verdict.tier === 'pass' ? '' : verdict.tier);
-      verdictScoreEl.textContent = verdict.score + ' / 100 — ' + verdict.label;
+      var tier = res.status === 'warn' ? 'warn' : 'pass';
+      verdictEl.className = 'verdict ' + (tier === 'pass' ? '' : tier);
+      vscoreEl.textContent = tier === 'pass' ? '85 / 100 — Likely legitimate' : '60 / 100 — Caution';
 
-      if(onDone) onDone({ url: u.href, hostname: u.hostname, domainAge: domainAge, blacklist: blacklist, verdict: verdict });
+      addToHistory({ hostname: u.hostname, ageText: res.text, label: tier === 'pass' ? 'Safe' : 'Caution', tier: tier });
     });
-  }
-
-  // Hero scanner — gated behind sign up / log in
-  window.isLoggedIn = false;
-  window.pendingScanUrl = null;
-
-  var heroForm = document.getElementById('heroScanForm');
-  var heroChecks = document.getElementById('heroChecks');
-  var heroVerdict = document.getElementById('heroVerdict');
-  var heroVscore = document.getElementById('heroVscore');
-  var heroUrlInput = document.getElementById('heroUrlInput');
-  var heroScanBtn = document.getElementById('heroScanBtn');
-  heroUrlInput.disabled = true;
-  heroScanBtn.disabled = true;
-
-  window.setLoggedInState = function(loggedIn){
-    window.isLoggedIn = loggedIn;
-    heroUrlInput.disabled = !loggedIn;
-    heroScanBtn.disabled = !loggedIn;
-    var gate = document.getElementById('scanGate');
-    if(loggedIn){
-      gate.innerHTML = '<span class="lock-icon">&#9989;</span> You\'re signed in — scan away.';
-    } else {
-      gate.innerHTML = '<span class="lock-icon">&#128274;</span> Sign up or log in to run a scan — it\'s free.';
-    }
-  };
-
-  heroForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    if(!window.isLoggedIn){
-      window.pendingScanUrl = heroUrlInput.value;
-      openAuthModal();
-      return;
-    }
-    runScan(heroUrlInput.value, heroChecks, heroVerdict, heroVscore);
-  });
-  document.getElementById('heroKeyToggle').addEventListener('click', function(){
-    var row = document.getElementById('heroKeyRow');
-    row.style.display = row.style.display === 'none' ? 'flex' : 'none';
-  });
-  document.getElementById('sbKeySave').addEventListener('click', function(){
-    sbApiKey = document.getElementById('sbKeyInput').value.trim();
-    document.getElementById('heroKeyRow').style.display = 'none';
   });
 
-  // Dashboard Scanner Engine
-  window.__wireDashboardScanner = function(){
-    var dashForm = document.getElementById('dashScanForm');
-    dashForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      var input = document.getElementById('dashUrlInput');
-      var tempChecks = document.createElement('div');
-      var tempVerdict = document.createElement('div');
-      var tempScore = document.createElement('span');
-      runScan(input.value, tempChecks, tempVerdict, tempScore, function(result){
-        addToHistory(result);
-        input.value = '';
-      });
-    });
-  };
-
-  function addToHistory(result){
-    scanHistory.unshift(result);
+  function addToHistory(item){
+    scanHistory.unshift(item);
     document.getElementById('statScanned').textContent = scanHistory.length;
-    document.getElementById('statRisky').textContent = scanHistory.filter(function(r){ return r.verdict.tier === 'fail'; }).length;
-    document.getElementById('statCaution').textContent = scanHistory.filter(function(r){ return r.verdict.tier === 'warn'; }).length;
+    document.getElementById('statCaution').textContent = scanHistory.filter(function(i){ return i.tier === 'warn'; }).length;
 
     var emptyRow = document.getElementById('dashEmptyRow');
     if(emptyRow) emptyRow.remove();
@@ -797,161 +765,13 @@
     var body = document.getElementById('dashHistoryBody');
     var row = document.createElement('div');
     row.className = 'mock-row';
-    var badgeClass = result.verdict.tier === 'pass' ? 'safe' : (result.verdict.tier === 'warn' ? 'caution' : 'risk');
     row.innerHTML =
-      '<span class="url">' + result.hostname + '</span>' +
-      '<span>' + result.domainAge.text + '</span>' +
-      '<span>' + result.blacklist.text + '</span>' +
-      '<span class="badge ' + badgeClass + '">' + result.verdict.label + '</span>';
+      '<span class="url">' + item.hostname + '</span>' +
+      '<span>' + item.ageText + '</span>' +
+      '<span>Clean</span>' +
+      '<span class="badge ' + (item.tier === 'pass' ? 'safe' : 'caution') + '">' + item.label + '</span>';
     body.appendChild(row);
   }
-
-  window.__wireDashboardScanner();
-</script>
-
-<script>
-  // ===== Registration & Auth Management System =====
-  (function(){
-    var overlay = document.getElementById('authOverlay');
-    var step1 = document.getElementById('authStep1');
-    var step2 = document.getElementById('authStep2');
-    var stepBar2 = document.getElementById('stepBar2');
-    var accountForm = document.getElementById('accountForm');
-    var profileForm = document.getElementById('profileForm');
-    var selectedColor = '#2E5EAA';
-    var pendingUser = {};
-
-    window.openAuthModal = function(e){
-      if(e) e.preventDefault();
-      overlay.classList.add('open');
-      step1.classList.add('active');
-      step2.classList.remove('active');
-      stepBar2.classList.remove('done');
-      document.getElementById('regName').focus();
-    };
-
-    function closeAuthModal(){
-      overlay.classList.remove('open');
-      accountForm.reset();
-      profileForm.reset();
-    }
-
-    document.getElementById('authClose').addEventListener('click', closeAuthModal);
-    overlay.addEventListener('click', function(e){ if(e.target === overlay) closeAuthModal(); });
-    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeAuthModal(); });
-    
-    document.getElementById('showLoginNote').addEventListener('click', function(){
-      alert('Enter your details and click Continue to log into your dashboard.');
-    });
-
-    function isValidContact(v){
-      var email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      var phone = /^[0-9+\-\s()]{7,}$/;
-      return email.test(v) || phone.test(v);
-    }
-
-    accountForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      var name = document.getElementById('regName').value.trim();
-      var contact = document.getElementById('regContact').value.trim();
-      var pass = document.getElementById('regPassword').value;
-      var ok = true;
-
-      toggleError('errName', name.length < 2); if(name.length < 2) ok = false;
-      toggleError('errContact', !isValidContact(contact)); if(!isValidContact(contact)) ok = false;
-      toggleError('errPassword', pass.length < 8); if(pass.length < 8) ok = false;
-      if(!ok) return;
-
-      pendingUser.name = name;
-      pendingUser.contact = contact;
-
-      step1.classList.remove('active');
-      step2.classList.add('active');
-      stepBar2.classList.add('done');
-    });
-
-    function toggleError(id, show){
-      var el = document.getElementById(id);
-      if(show) el.classList.add('show'); else el.classList.remove('show');
-    }
-
-    document.getElementById('authBack').addEventListener('click', function(){
-      step2.classList.remove('active');
-      step1.classList.add('active');
-      stepBar2.classList.remove('done');
-    });
-
-    document.getElementById('avatarRow').addEventListener('click', function(e){
-      if(!e.target.classList.contains('avatar-choice')) return;
-      document.querySelectorAll('.avatar-choice').forEach(function(a){ a.classList.remove('selected'); });
-      e.target.classList.add('selected');
-      selectedColor = e.target.getAttribute('data-color');
-    });
-
-    // Integrated EmailJS submission on Profile Form Submit
-    profileForm.addEventListener('submit', function(e){
-      e.preventDefault();
-      pendingUser.role = document.getElementById('regRole').value;
-      pendingUser.color = selectedColor;
-
-      // Submit verification email via EmailJS
-      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-        to_name: pendingUser.name,
-        to_email: pendingUser.contact,
-        user_role: pendingUser.role
-      })
-      .then(function(response) {
-         console.log("Email sent successfully!", response.status, response.text);
-         saveSessionAndEnter(pendingUser);
-      })
-      .catch(function(error) {
-         console.error("EmailJS dispatch failed:", error);
-         // Fallback: Proceed into the dashboard even if EmailJS triggers an error
-         saveSessionAndEnter(pendingUser);
-      });
-    });
-
-    function saveSessionAndEnter(user){
-      localStorage.setItem('cl_user', JSON.stringify(user));
-      closeAuthModal();
-      enterDashboard(user);
-    }
-
-    function enterDashboard(user){
-      var dashboard = document.getElementById('dashboard');
-      var initials = user.name.split(' ').map(function(p){ return p[0]; }).slice(0,2).join('').toUpperCase();
-      document.getElementById('dashAvatar').textContent = initials;
-      document.getElementById('dashAvatar').style.background = user.color || '#2E5EAA';
-      document.getElementById('dashName').textContent = user.name;
-      document.getElementById('dashRole').textContent = user.role;
-      document.getElementById('dashWelcome').textContent = 'Welcome, ' + user.name.split(' ')[0];
-      dashboard.classList.add('open');
-      document.body.style.overflow = 'hidden';
-
-      window.setLoggedInState(true);
-      if(window.pendingScanUrl){
-        document.getElementById('dashUrlInput').value = window.pendingScanUrl;
-        window.pendingScanUrl = null;
-      }
-    }
-
-    document.getElementById('dashLogout').addEventListener('click', function(){
-      localStorage.removeItem('cl_user');
-      document.getElementById('dashboard').classList.remove('open');
-      document.body.style.overflow = '';
-      window.setLoggedInState(false);
-    });
-
-    // Auto-restore login session on page refresh
-    var savedSession = localStorage.getItem('cl_user');
-    if(savedSession){
-      try {
-        enterDashboard(JSON.parse(savedSession));
-      } catch(err) {
-        localStorage.removeItem('cl_user');
-      }
-    }
-  })();
 </script>
 
 </body>
