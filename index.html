@@ -114,43 +114,52 @@
             background-color: rgba(255, 255, 255, 0.05);
         }
 
-        /* Tab Switcher inside Auth Modal */
+        /* Segmented Pill Switcher for Auth Tabs */
         .auth-tabs {
             display: flex;
-            border-bottom: 1px solid #334155;
+            background-color: #0f172a;
+            padding: 4px;
+            border-radius: 0.5rem;
+            border: 1px solid #334155;
             margin-bottom: 1.25rem;
         }
 
         .auth-tab {
             flex: 1;
-            padding: 0.65rem;
+            padding: 0.6rem 1rem;
             text-align: center;
             background: transparent;
             border: none;
+            border-radius: 0.375rem;
             color: #94a3b8;
             font-weight: 600;
+            font-size: 0.9rem;
             cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .auth-tab:focus {
+            outline: none;
         }
 
         .auth-tab.active {
-            color: #818cf8;
-            border-bottom-color: #4f46e5;
-            background: rgba(79, 70, 229, 0.08);
+            color: #ffffff !important;
+            background-color: #4f46e5 !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
         }
 
         .step-indicator {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
             font-size: 0.85rem;
             color: #94a3b8;
         }
 
         .step-indicator span.active {
-            color: #4f46e5;
-            font-weight: bold;
+            color: #818cf8;
+            font-weight: 600;
         }
 
         .flex-row {
@@ -174,7 +183,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Checkbox Custom Styling */
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -780,7 +788,7 @@
        3. MODALS (Authentication, Settings, Forensic Reports)
        ========================================================================== -->
     
-    <!-- Auth Modal (Log In & Sign Up with EmailJS 2FA) -->
+    <!-- Auth Modal -->
     <div id="authModal" class="modal-overlay hidden">
         <div class="modal">
             <div class="auth-tabs">
@@ -799,7 +807,7 @@
 
             <!-- Step 1: Input -->
             <div id="modalStep1">
-                <div class="form-group" id="usernameGroup">
+                <div class="form-group hidden" id="usernameGroup">
                     <label>Username</label>
                     <input type="text" id="regUsername" placeholder="e.g. cyber_analyst">
                 </div>
@@ -885,7 +893,6 @@
        4. INTEGRATED APPLICATION SCRIPT
        ========================================================================== -->
     <script>
-        // Server Handler Layer (Session Storage vs LocalStorage Persistence & Accounts DB)
         class MockBackendServer {
             constructor() {
                 const storedLocal = localStorage.getItem('cl_server_db_v1');
@@ -900,7 +907,7 @@
                 } else {
                     this.db = {
                         user: null,
-                        registeredUsers: {}, // Multi-user account store by email
+                        registeredUsers: {},
                         config: { mode: 'simulation', apiUrl: 'https://api.clscanner-enterprise.internal/v1' },
                         history: [],
                         activeTokens: {}
@@ -989,7 +996,6 @@
                         let flags = [];
                         let riskScore = 0;
 
-                        // 1. Protocol Check
                         if (parsedObj.protocol !== 'https:') {
                             flags.push({ check: 'Transport Protocol', result: 'Insecure HTTP Protocol', weight: 20 });
                             riskScore += 20;
@@ -997,13 +1003,11 @@
                             flags.push({ check: 'Transport Protocol', result: 'Secure HTTPS Active', weight: 0 });
                         }
 
-                        // 2. IP Host Check
                         if (/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(hostname)) {
                             flags.push({ check: 'Host Structure', result: 'Raw IP Address Used', weight: 45 });
                             riskScore += 45;
                         }
 
-                        // 3. Risky TLDs
                         const riskyTlds = ['.xyz', '.top', '.zip', '.ru', '.gq', '.ml', '.cf', '.cn', '.tk', '.cc'];
                         const matchedTld = riskyTlds.find(tld => hostname.endsWith(tld));
                         if (matchedTld) {
@@ -1013,7 +1017,6 @@
                             flags.push({ check: 'Top-Level Domain', result: 'Standard Trust TLD', weight: 0 });
                         }
 
-                        // 4. Entropy calculation
                         let len = hostname.length;
                         let entropy = 0;
                         if (len > 0) {
@@ -1032,7 +1035,6 @@
                             riskScore += 30;
                         }
 
-                        // 5. Phishing Keywords
                         const keywords = ['login', 'signin', 'verify', 'account', 'banking', 'secure', 'update', 'support', 'wallet', 'auth'];
                         const matchedKeywords = keywords.filter(kw => hostname.includes(kw) || pathname.includes(kw));
                         if (matchedKeywords.length > 0) {
@@ -1040,7 +1042,6 @@
                             riskScore += 30;
                         }
 
-                        // 6. Live DNS Lookup Proxy Simulation
                         try {
                             const res = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(hostname)}`);
                             const dnsData = await res.json();
@@ -1075,13 +1076,12 @@
         }
 
         const server = new MockBackendServer();
-        let authMode = 'login'; // 'login' or 'signup'
+        let authMode = 'login';
         let activeTempEmail = '';
         let activeTempUsername = '';
         let activeRememberMe = true;
         let pendingScanUrl = '';
 
-        // Initializer: Checks persistent / session login state
         window.addEventListener('DOMContentLoaded', () => {
             if (server.db.user && server.db.user.verified) {
                 showAppView();
@@ -1090,7 +1090,6 @@
             }
         });
 
-        // View Controllers
         function showLandingView() {
             document.getElementById('landingView').classList.remove('hidden');
             document.getElementById('appView').classList.add('hidden');
@@ -1101,7 +1100,6 @@
             document.getElementById('appView').classList.remove('hidden');
             updateUI();
 
-            // Run pending hero scan if available
             if (pendingScanUrl) {
                 document.getElementById('targetUrl').value = pendingScanUrl;
                 pendingScanUrl = '';
@@ -1109,7 +1107,6 @@
             }
         }
 
-        // Hero Scan Handler for Landing Page
         function handleHeroScan(e) {
             e.preventDefault();
             const inputVal = document.getElementById('heroUrlInput').value.trim();
@@ -1119,7 +1116,6 @@
             openAuthModal('signup');
         }
 
-        // Auth Modal & Tab Switching Controllers
         function openAuthModal(mode = 'login') {
             switchAuthTab(mode);
             document.getElementById('authModal').classList.remove('hidden');
@@ -1173,7 +1169,6 @@
             document.getElementById('verificationInput').value = '';
         }
 
-        // Step 1: Request EmailJS 2FA Token (Log In or Sign Up)
         async function serverRequestToken() {
             activeTempEmail = document.getElementById('regEmail').value.trim().toLowerCase();
             activeTempUsername = document.getElementById('regUsername').value.trim();
@@ -1189,7 +1184,6 @@
                 return;
             }
 
-            // Check if user exists when logging in
             if (authMode === 'login') {
                 const existingUser = server.getUserByEmail(activeTempEmail);
                 if (!existingUser) {
@@ -1241,7 +1235,6 @@
             document.getElementById('indicatorStep1').classList.add('active');
         }
 
-        // Step 2: Verification Check & Flow Branching
         async function serverVerifyToken() {
             const tokenInput = document.getElementById('verificationInput').value.trim();
             const res = await server.verifyToken(activeTempEmail, tokenInput);
@@ -1252,7 +1245,6 @@
             }
 
             if (authMode === 'login') {
-                // Direct Login for existing users
                 const loginRes = await server.loginUser(activeTempEmail, activeRememberMe);
                 if (loginRes.success) {
                     closeAuthModal();
@@ -1261,7 +1253,6 @@
                     alert(loginRes.message);
                 }
             } else {
-                // Proceed to Profile Setup for new users
                 document.getElementById('modalStep2').classList.add('hidden');
                 document.getElementById('modalStep3').classList.remove('hidden');
                 document.getElementById('indicatorStep2').classList.remove('active');
@@ -1269,7 +1260,6 @@
             }
         }
 
-        // Step 3: Complete Profile Setup & Sign Up
         async function serverCompleteRegistration() {
             const role = document.getElementById('regRole').value;
             const avatar = document.getElementById('regAvatar').value.trim();
@@ -1285,7 +1275,6 @@
             showAppView();
         }
 
-        // Session Logout
         function serverLogout() {
             if (server.db.user) {
                 server.db.user.verified = false;
@@ -1294,7 +1283,6 @@
             showLandingView();
         }
 
-        // Settings / Config Modal
         function toggleSettingsModal() {
             const modal = document.getElementById('settingsModal');
             modal.classList.toggle('hidden');
@@ -1312,7 +1300,6 @@
             alert('Backend configuration updated.');
         }
 
-        // Dashboard Scan Execution
         async function performServerScan() {
             const urlInput = document.getElementById('targetUrl');
             const scanBtn = document.getElementById('scanBtn');
@@ -1334,7 +1321,6 @@
             scanBtn.textContent = 'Run Scan';
         }
 
-        // Report View
         function openReportModal(scanId) {
             const record = server.db.history.find(s => s.id === scanId);
             if (!record) return;
@@ -1360,7 +1346,6 @@
             document.getElementById('reportModal').classList.add('hidden');
         }
 
-        // Log Export / Purge
         function exportHistoryCSV() {
             if (server.db.history.length === 0) {
                 alert('No log history available to export.');
@@ -1389,7 +1374,6 @@
             }
         }
 
-        // UI Synchronization
         function updateUI() {
             const user = server.db.user || { username: 'User' };
             document.getElementById('navUsername').textContent = user.username || 'User';
