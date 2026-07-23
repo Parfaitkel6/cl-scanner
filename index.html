@@ -148,6 +148,524 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Checkbox Custom Styling */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 1.1rem;
+            height: 1.1rem;
+            accent-color: #4f46e5;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+        }
+
+        /* ==========================================================================
+           2. LANDING PAGE STYLES (#landingView)
+           ========================================================================== */
+        #landingView {
+            --paper: #F5F3EE;
+            --ink: #14181F;
+            --ink-soft: rgba(20,24,31,0.62);
+            --line: rgba(20,24,31,0.13);
+            --trust: #2E5EAA;
+            --safe: #3B8763;
+            --caution: #B98B2E;
+            --risk: #B23B3B;
+
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        #landingView a { color: inherit; }
+        #landingView .wrap { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
+
+        #landingView header {
+            position: sticky; top: 0; z-index: 20;
+            background: rgba(245,243,238,0.88); backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        #landingView nav {
+            max-width: 1140px; margin: 0 auto; padding: 20px 32px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+
+        #landingView .logo {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.22rem;
+            display: flex; align-items: center; gap: 9px; letter-spacing: -0.01em;
+        }
+
+        #landingView .logo .mark {
+            width: 20px; height: 20px; border-radius: 5px; background: var(--trust);
+            position: relative; flex-shrink: 0;
+        }
+
+        #landingView .logo .mark::after {
+            content: ""; position: absolute; left: 5px; top: 8px; width: 4px; height: 4px;
+            border-left: 2px solid var(--paper); border-bottom: 2px solid var(--paper);
+            transform: rotate(-45deg);
+        }
+
+        #landingView .navlinks { display: flex; gap: 34px; font-size: 0.9rem; color: var(--ink-soft); }
+        #landingView .navlinks a { text-decoration: none; transition: color .2s; }
+        #landingView .navlinks a:hover { color: var(--ink); }
+
+        #landingView .navcta {
+            font-size: 0.88rem; font-weight: 600; padding: 10px 20px;
+            background: var(--ink); color: var(--paper); border-radius: 3px;
+            text-decoration: none; transition: opacity .2s; cursor: pointer; border: none;
+        }
+
+        #landingView .navcta:hover { opacity: 0.85; }
+
+        #landingView .hero {
+            max-width: 1140px; margin: 0 auto; padding: 88px 32px 80px;
+            display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 60px; align-items: center;
+        }
+
+        #landingView .eyebrow {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem;
+            text-transform: uppercase; letter-spacing: 0.1em; color: var(--trust);
+            font-weight: 500; margin-bottom: 20px; display: flex; align-items: center; gap: 9px;
+        }
+        #landingView .eyebrow::before { content: ""; width: 20px; height: 1px; background: var(--trust); }
+
+        #landingView h1 {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+            font-size: clamp(2.3rem, 4.2vw, 3.4rem); line-height: 1.08;
+            letter-spacing: -0.02em; margin-bottom: 24px;
+        }
+
+        #landingView h1 .hl { color: var(--trust); }
+        #landingView p.lede { font-size: 1.06rem; color: var(--ink-soft); max-width: 44ch; margin-bottom: 34px; }
+        #landingView .cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+
+        #landingView .btn-primary {
+            background: var(--trust); color: #fff; padding: 15px 26px; border-radius: 4px;
+            text-decoration: none; font-weight: 600; font-size: 0.95rem;
+            display: inline-block; transition: transform .2s, background .2s; cursor: pointer; border: none;
+        }
+        #landingView .btn-primary:hover { transform: translateY(-1px); background: #254e8e; }
+
+        #landingView .btn-ghost {
+            text-decoration: none; font-size: 0.92rem; font-weight: 600;
+            border-bottom: 1px solid var(--ink); padding-bottom: 3px;
+        }
+
+        #landingView .scan-card {
+            background: #fff; border: 1px solid var(--line); border-radius: 8px;
+            padding: 26px; box-shadow: 0 20px 50px rgba(20,24,31,0.08);
+        }
+
+        #landingView .scan-input-row { display: flex; gap: 8px; }
+        #landingView .scan-gate {
+            display: flex; align-items: center; gap: 8px; background: rgba(46,94,170,0.08);
+            border: 1px solid rgba(46,94,170,0.25); color: var(--trust); font-size: 0.82rem;
+            font-weight: 500; padding: 10px 14px; border-radius: 6px; margin-bottom: 14px;
+        }
+
+        #landingView .scan-input-row input {
+            flex: 1; min-width: 0; background: var(--paper);
+            border: 1px solid var(--line); border-radius: 5px; padding: 11px 14px;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; color: var(--ink);
+        }
+
+        #landingView .scan-btn {
+            background: var(--ink); color: var(--paper); border: none; border-radius: 5px;
+            padding: 0 20px; font-weight: 600; font-size: 0.88rem; cursor: pointer;
+            transition: background .2s; white-space: nowrap;
+        }
+
+        #landingView .strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 20px 32px; }
+        #landingView .strip .wrap {
+            display: flex; gap: 44px; justify-content: space-between; flex-wrap: wrap;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-soft);
+        }
+
+        #landingView section { padding: 96px 32px; }
+        #landingView .section-head { max-width: 620px; margin-bottom: 54px; }
+        #landingView h2 {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+            font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -0.015em; line-height: 1.15;
+        }
+
+        #landingView .grid-3 {
+            max-width: 1140px; margin: 0 auto; display: grid;
+            grid-template-columns: repeat(3,1fr); gap: 1px;
+            background: var(--line); border: 1px solid var(--line);
+        }
+
+        #landingView .card { background: var(--paper); padding: 34px 28px; }
+        #landingView .card .icon {
+            width: 36px; height: 36px; border-radius: 8px; background: var(--ink);
+            color: var(--paper); display: flex; align-items: center; justify-content: center;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 18px;
+        }
+
+        #landingView .demo { background: var(--ink); color: var(--paper); }
+        #landingView .demo h2 { color: var(--paper); }
+        #landingView .mock {
+            max-width: 1140px; margin: 0 auto; background: var(--paper); color: var(--ink);
+            border-radius: 8px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+        }
+        #landingView .mock-bar { display: flex; align-items: center; gap: 8px; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+        #landingView .mock-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+        #landingView .mock-body { padding: 28px; }
+        #landingView .mock-row {
+            display: grid; grid-template-columns: 1.6fr 0.7fr 0.7fr 0.6fr; gap: 16px;
+            align-items: center; padding: 14px 4px; border-bottom: 1px solid var(--line); font-size: 0.87rem;
+        }
+
+        #landingView .badge {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.74rem; font-weight: 500;
+            padding: 3px 9px; border-radius: 20px; width: fit-content;
+        }
+        #landingView .badge.safe { color: var(--safe); background: rgba(59,135,99,0.1); }
+        #landingView .badge.caution { color: var(--caution); background: rgba(185,139,46,0.12); }
+        #landingView .badge.risk { color: var(--risk); background: rgba(178,59,59,0.12); }
+
+        #landingView footer {
+            border-top: 1px solid var(--line); padding: 34px 32px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.82rem; color: var(--ink-soft); flex-wrap: wrap; gap: 12px;
+        }
+
+        @media (max-width: 900px) {
+            #landingView .hero { grid-template-columns: 1fr; padding-top: 56px; }
+            #landingView .grid-3 { grid-template-columns: 1fr; }
+            #landingView .navlinks { display: none; }
+        }
+
+        /* ==========================================================================
+           3. APP DASHBOARD STYLES (#appView)
+           ========================================================================== */
+        #appView {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --warning: #f59e0b;
+
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        #appView header {
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #appView .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #appView .user-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #appView .user-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.35rem 0.75rem;
+            border-radius: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        #appView .user-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        #appView main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        #appView .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #appView h2, #appView h3 {
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        #appView input, #appView select {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        #appView input:focus, #appView select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        #appView button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #appView button:hover {
+            background-color: var(--primary-hover);
+        }
+
+        #appView button.secondary {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        #appView button.secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        #appView button.danger {
+            background-color: var(--danger);
+        }
+
+        #appView .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CL Scanner Pro - Enterprise Server Edition</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+                publicKey: "LJWS48i6NWItGEIKS",
+            });
+        })();
+    </script>
+
+    <style>
+        /* ==========================================================================
+           1. SHARED & GLOBAL STYLES
+           ========================================================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 1rem;
+        }
+
+        .modal {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #f8fafc;
+            width: 100%;
+            max-width: 500px;
+            padding: 2rem;
+            border-radius: 1rem;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        .modal h2, .modal h3 {
+            margin-bottom: 0.5rem;
+            color: #f8fafc;
+        }
+
+        .modal .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .modal label {
+            display: block;
+            font-size: 0.875rem;
+            color: #94a3b8;
+            margin-bottom: 0.35rem;
+        }
+
+        .modal input, .modal select {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            color: #f8fafc;
+            font-size: 1rem;
+        }
+
+        .modal input:focus, .modal select:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        .modal button {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .modal button:hover {
+            background-color: #4338ca;
+        }
+
+        .modal button.secondary {
+            background-color: transparent;
+            border: 1px solid #334155;
+            color: #f8fafc;
+        }
+
+        .modal button.secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .step-indicator span.active {
+            color: #4f46e5;
+            font-weight: bold;
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .loader {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Checkbox Custom Styling */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 1.1rem;
+            height: 1.1rem;
+            accent-color: #4f46e5;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: #cbd5e1;
+        }
+
         /* ==========================================================================
            2. LANDING PAGE STYLES (#landingView)
            ========================================================================== */
@@ -715,7 +1233,7 @@
        3. MODALS (Authentication, Settings, Forensic Reports)
        ========================================================================== -->
     
-    <!-- Auth Modal (EmailJS 2FA) -->
+    <!-- Auth Modal (EmailJS 2FA & Keep Me Logged In Option) -->
     <div id="authModal" class="modal-overlay hidden">
         <div class="modal">
             <h2>Server-Backed Authentication</h2>
@@ -736,6 +1254,10 @@
                 <div class="form-group">
                     <label>Email Address</label>
                     <input type="email" id="regEmail" placeholder="analyst@domain.com">
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="regRememberMe" checked>
+                    <label for="regRememberMe">Keep me logged in on this device</label>
                 </div>
                 <button onclick="serverRequestToken()" style="width: 100%;" id="sendTokenBtn">Request Security Token</button>
                 <button class="secondary" onclick="closeAuthModal()" style="width: 100%; margin-top: 0.5rem;">Cancel</button>
@@ -811,19 +1333,43 @@
        4. INTEGRATED APPLICATION SCRIPT
        ========================================================================== -->
     <script>
-        // Server Handler Layer (LocalStorage Persistence)
+        // Server Handler Layer (Session Storage vs LocalStorage Persistence)
         class MockBackendServer {
             constructor() {
-                this.db = JSON.parse(localStorage.getItem('cl_server_db_v1')) || {
-                    user: { username: '', email: '', role: '', avatar: '', verified: false },
-                    config: { mode: 'simulation', apiUrl: 'https://api.clscanner-enterprise.internal/v1' },
-                    history: [],
-                    activeTokens: {}
-                };
+                // Check both localStorage (Remember Me = active) and sessionStorage (Session only)
+                const storedLocal = localStorage.getItem('cl_server_db_v1');
+                const storedSession = sessionStorage.getItem('cl_server_db_v1');
+
+                if (storedLocal) {
+                    this.db = JSON.parse(storedLocal);
+                    this.isPersistent = true;
+                } else if (storedSession) {
+                    this.db = JSON.parse(storedSession);
+                    this.isPersistent = false;
+                } else {
+                    this.db = {
+                        user: { username: '', email: '', role: '', avatar: '', verified: false, rememberMe: true },
+                        config: { mode: 'simulation', apiUrl: 'https://api.clscanner-enterprise.internal/v1' },
+                        history: [],
+                        activeTokens: {}
+                    };
+                    this.isPersistent = true;
+                }
             }
 
-            save() {
-                localStorage.setItem('cl_server_db_v1', JSON.stringify(this.db));
+            save(rememberMeOverride = null) {
+                if (rememberMeOverride !== null) {
+                    this.isPersistent = rememberMeOverride;
+                }
+
+                const jsonStr = JSON.stringify(this.db);
+                if (this.isPersistent) {
+                    localStorage.setItem('cl_server_db_v1', jsonStr);
+                    sessionStorage.removeItem('cl_server_db_v1');
+                } else {
+                    sessionStorage.setItem('cl_server_db_v1', jsonStr);
+                    localStorage.removeItem('cl_server_db_v1');
+                }
             }
 
             async verifyToken(email, tokenInput) {
@@ -839,11 +1385,11 @@
                 });
             }
 
-            async registerUser(userData) {
+            async registerUser(userData, rememberMe = true) {
                 return new Promise((resolve) => {
                     setTimeout(() => {
-                        this.db.user = { ...userData, verified: true };
-                        this.save();
+                        this.db.user = { ...userData, verified: true, rememberMe: rememberMe };
+                        this.save(rememberMe);
                         resolve({ success: true });
                     }, 500);
                 });
@@ -952,11 +1498,12 @@
         const server = new MockBackendServer();
         let activeTempEmail = '';
         let activeTempUsername = '';
+        let activeRememberMe = true;
         let pendingScanUrl = '';
 
-        // Initializer: Checks persistent login session
+        // Initializer: Checks persistent / session login state
         window.addEventListener('DOMContentLoaded', () => {
-            if (server.db.user.verified) {
+            if (server.db.user && server.db.user.verified) {
                 showAppView();
             } else {
                 showLandingView();
@@ -1001,10 +1548,11 @@
             document.getElementById('authModal').classList.add('hidden');
         }
 
-        // Step 1: EmailJS Dispatch
+        // Step 1: EmailJS Dispatch & Keep Logged In Capture
         async function serverRequestToken() {
             activeTempUsername = document.getElementById('regUsername').value.trim();
             activeTempEmail = document.getElementById('regEmail').value.trim();
+            activeRememberMe = document.getElementById('regRememberMe').checked;
 
             if (!activeTempUsername || !activeTempEmail || !activeTempEmail.includes('@')) {
                 alert('Please provide a valid username and email address.');
@@ -1017,7 +1565,7 @@
 
             const token = Math.floor(100000 + Math.random() * 900000).toString();
             server.db.activeTokens[activeTempEmail] = token;
-            server.save();
+            server.save(activeRememberMe);
 
             const serviceID = "service_nusewys";
             const templateID = "template_oq5uy3x";
@@ -1079,7 +1627,7 @@
                 email: activeTempEmail,
                 role: role,
                 avatar: avatar
-            });
+            }, activeRememberMe);
 
             closeAuthModal();
             showAppView();
@@ -1088,7 +1636,801 @@
         // Session Logout
         function serverLogout() {
             server.db.user.verified = false;
+            localStorage.removeItem('cl_server_db_v1');
+            sessionStorage.removeItem('cl_server_db_v1');
+            showLandingView();
+        }
+
+        // Settings / Config Modal
+        function toggleSettingsModal() {
+            const modal = document.getElementById('settingsModal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                document.getElementById('configBackendMode').value = server.db.config.mode;
+                document.getElementById('configApiUrl').value = server.db.config.apiUrl;
+            }
+        }
+
+        function saveSettings() {
+            server.db.config.mode = document.getElementById('configBackendMode').value;
+            server.db.config.apiUrl = document.getElementById('configApiUrl').value.trim();
             server.save();
+            toggleSettingsModal();
+            alert('Backend config updated.');
+        }
+
+        // Dashboard Scan Execution
+        async function performServerScan() {
+            const urlInput = document.getElementById('targetUrl');
+            const scanBtn = document.getElementById('scanBtn');
+            const targetUrl = urlInput.value.trim();
+
+            if (!targetUrl) {
+                alert('Please enter a target URL or domain.');
+                return;
+            }
+
+            scanBtn.disabled = true;
+            scanBtn.innerHTML = `<span class="loader"></span>Executing Backend Scan...`;
+
+            await server.executeScan(targetUrl);
+            updateUI();
+
+            urlInput.value = '';
+            scanBtn.disabled = false;
+            scanBtn.textContent = 'Run Scan';
+        }
+
+        // Report View
+        function openReportModal(scanId) {
+            const record = server.db.history.find(s => s.id === scanId);
+            if (!record) return;
+
+            document.getElementById('reportTargetUrl').textContent = `Target: ${record.url}`;
+            const contentBox = document.getElementById('reportContent');
+            contentBox.innerHTML = '';
+
+            record.flags.forEach(flag => {
+                const row = document.createElement('div');
+                row.className = 'report-row';
+                row.innerHTML = `
+                    <span style="color: #94a3b8;">${flag.check}</span>
+                    <span style="font-weight: 500; text-align: right; max-width: 60%;">${flag.result}</span>
+                `;
+                contentBox.appendChild(row);
+            });
+
+            document.getElementById('reportModal').classList.remove('hidden');
+        }
+
+        function closeReportModal() {
+            document.getElementById('reportModal').classList.add('hidden');
+        }
+
+        // Log Export / Purge
+        function exportHistoryCSV() {
+            if (server.db.history.length === 0) {
+                alert('No log history available to export.');
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,Timestamp,Target URL,Status,Risk Score\n";
+            server.db.history.forEach(row => {
+                csvContent += `"${row.timestamp}","${row.url}","${row.status}","${row.risk}"\n`;
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', `cl_server_logs_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function clearHistory() {
+            if (confirm('Clear server log history?')) {
+                server.db.history = [];
+                server.save();
+                updateUI();
+            }
+        }
+
+        // UI Synchronization
+        function updateUI() {
+            const user = server.db.user;
+            document.getElementById('navUsername').textContent = user.username || 'User';
+            const avatarContainer = document.getElementById('navUserAvatar');
+
+            if (user.avatar) {
+                avatarContainer.innerHTML = `<img src="${user.avatar}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" alt="Avatar">`;
+            } else {
+                avatarContainer.textContent = (user.username || 'U').charAt(0).toUpperCase();
+            }
+
+            const history = server.db.history;
+            const total = history.length;
+            const safeCount = history.filter(s => s.status === 'safe').length;
+            const threatCount = total - safeCount;
+
+            document.getElementById('statTotal').textContent = total;
+            document.getElementById('statSafe').textContent = safeCount;
+            document.getElementById('statThreats').textContent = threatCount;
+
+            const tbody = document.getElementById('historyTableBody');
+            tbody.innerHTML = '';
+
+            if (total === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: #94a3b8;">No backend records found.</td></tr>`;
+                return;
+            }
+
+            history.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.timestamp}</td>
+                    <td style="word-break: break-all;">${item.url}</td>
+                    <td><span class="badge ${item.status}">${item.status}</span></td>
+                    <td>${item.risk}</td>
+                    <td><button class="secondary" style="padding: 0.25rem 0.5rem; font-size: 0.75rem;" onclick="openReportModal('${item.id}')">View Report</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>
+        }
+
+        #appView .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+        }
+
+        #appView .stat-card .value {
+            font-size: 1.75rem;
+            font-weight: bold;
+            margin-top: 0.25rem;
+        }
+
+        #appView .scanner-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        #appView .scanner-input-group input {
+            flex: 1;
+        }
+
+        #appView .table-container {
+            overflow-x: auto;
+        }
+
+        #appView table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            margin-top: 0.5rem;
+        }
+
+        #appView th, #appView td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+
+        #appView th {
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        #appView .badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        #appView .badge.safe { background-color: rgba(34, 197, 94, 0.2); color: var(--success); }
+        #appView .badge.suspicious { background-color: rgba(245, 158, 11, 0.2); color: var(--warning); }
+        #appView .badge.malicious { background-color: rgba(239, 68, 68, 0.2); color: var(--danger); }
+
+        .report-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .report-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px dashed #334155;
+            padding-bottom: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+       VIEW 1: LANDING PAGE (Shown when logged out)
+       ========================================================================== -->
+    <div id="landingView">
+        <header>
+            <nav>
+                <div class="logo"><span class="mark"></span>CL Scanner</div>
+                <div class="navlinks">
+                    <a href="#problem">Why CL Scanner</a>
+                    <a href="#demo">How it works</a>
+                </div>
+                <button class="navcta" onclick="openRegistrationModal()">Create Account</button>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div>
+                <div class="eyebrow">Website legitimacy, checked in seconds</div>
+                <h1>Know if a site is <span class="hl">real</span> before you buy, sign in, or pay.</h1>
+                <p class="lede">CL Scanner uses enterprise heuristics and real-time backend intelligence to help you identify threat domains, scam patterns, and malicious hosts.</p>
+                <div class="cta-row">
+                    <button class="btn-primary" onclick="openRegistrationModal()">Get Started</button>
+                    <a class="btn-ghost" href="#demo">See a live scan</a>
+                </div>
+            </div>
+
+            <div class="scan-card">
+                <div class="scan-gate">
+                    <span class="lock-icon">&#128274;</span> Sign up or log in to run a scan — it's free.
+                </div>
+                <form onsubmit="handleHeroScan(event)" class="scan-input-row">
+                    <input type="text" id="heroUrlInput" placeholder="Paste a URL, e.g. wikipedia.org">
+                    <button type="submit" class="scan-btn">Scan</button>
+                </form>
+            </div>
+        </section>
+
+        <div class="strip">
+            <div class="wrap">
+                <span>Scans run in under 4 seconds</span>
+                <span>Checks certificates, domain entropy, and blacklists</span>
+                <span>Persistent database logs for registered users</span>
+            </div>
+        </div>
+
+        <section id="problem">
+            <div class="section-head">
+                <div class="eyebrow">The problem</div>
+                <h2>Scam sites look real. That's the whole trick.</h2>
+                <p>Convincing logos and checkout pages don't tell you who actually runs a site, how long it's existed, or whether it's been flagged before.</p>
+            </div>
+            <div class="grid-3">
+                <div class="card">
+                    <div class="icon">01</div>
+                    <h3>New sites, no history</h3>
+                    <p>A domain registered last week can look identical to one that's been trusted for a decade.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">02</div>
+                    <h3>Hidden ownership</h3>
+                    <p>Privacy-shielded WHOIS records make it impossible to see who's actually behind a storefront.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">03</div>
+                    <h3>No single source of truth</h3>
+                    <p>Checking a certificate here, a blacklist there — most people don't have time to piece it together.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="demo" id="demo">
+            <div class="section-head">
+                <div class="eyebrow">How it works</div>
+                <h2>Paste a link. Get a verdict, not a guess.</h2>
+            </div>
+            <div class="mock">
+                <div class="mock-bar"><span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+                <div class="mock-body">
+                    <div class="mock-row"><span class="url">cl-marketplace-deals.com</span><span>High Entropy</span><span>HTTPS</span><span class="badge caution">Caution</span></div>
+                    <div class="mock-row"><span class="url">wikipedia.org</span><span>Verified DNS</span><span>HTTPS</span><span class="badge safe">Safe</span></div>
+                    <div class="mock-row"><span class="url">quickpay-checkout.net</span><span>Phishing Keywords</span><span>HTTP</span><span class="badge risk">High risk</span></div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="logo"><span class="mark"></span>CL Scanner</div>
+            <div>&copy; 2026 CL Scanner. Built to help you trust what you click.</div>
+        </footer>
+    </div>
+
+
+    <!-- ==========================================================================
+       VIEW 2: ENTERPRISE APP DASHBOARD (Shown when logged in)
+       ========================================================================== -->
+    <div id="appView" class="hidden">
+        <header>
+            <div class="logo">
+                🛡️ CL Scanner Pro (Server Edition)
+            </div>
+            <div class="user-nav">
+                <div class="user-badge" id="navUserBadge">
+                    <div class="user-avatar" id="navUserAvatar">U</div>
+                    <span id="navUsername">User</span>
+                </div>
+                <button class="secondary" onclick="toggleSettingsModal()" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">Settings</button>
+                <button class="secondary" onclick="serverLogout()" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">Log Out</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <label style="color: var(--text-muted); font-size: 0.875rem;">Total Scans</label>
+                    <div class="value" id="statTotal">0</div>
+                </div>
+                <div class="stat-card">
+                    <label style="color: var(--text-muted); font-size: 0.875rem;">Safe Targets</label>
+                    <div class="value" style="color: var(--success);" id="statSafe">0</div>
+                </div>
+                <div class="stat-card">
+                    <label style="color: var(--text-muted); font-size: 0.875rem;">Threats Detected</label>
+                    <div class="value" style="color: var(--danger);" id="statThreats">0</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Enterprise Security & Threat Intelligence Scan</h3>
+                <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">Performs deep algorithmic checks combined with backend threat intelligence aggregation.</p>
+                <div class="scanner-input-group">
+                    <input type="text" id="targetUrl" placeholder="Enter target domain or URL (e.g., example.com)">
+                    <button id="scanBtn" onclick="performServerScan()">Run Scan</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h3 style="margin-bottom: 0;">Database Log History</h3>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="secondary" onclick="exportHistoryCSV()" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Export CSV</button>
+                        <button class="danger" onclick="clearHistory()" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">Purge Logs</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Target URL</th>
+                                <th>Status</th>
+                                <th>Risk Score</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- ==========================================================================
+       3. MODALS (Authentication, Settings, Forensic Reports)
+       ========================================================================== -->
+    
+    <!-- Auth Modal (EmailJS 2FA & Keep Me Logged In Option) -->
+    <div id="authModal" class="modal-overlay hidden">
+        <div class="modal">
+            <h2>Server-Backed Authentication</h2>
+            <p style="color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem;">Register or link your secure database profile.</p>
+            
+            <div class="step-indicator">
+                <span id="indicatorStep1" class="active">1. Credentials</span>
+                <span id="indicatorStep2">2. Verify Token</span>
+                <span id="indicatorStep3">3. Profile Setup</span>
+            </div>
+
+            <!-- Step 1: Input -->
+            <div id="modalStep1">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="regUsername" placeholder="e.g. cyber_analyst">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="regEmail" placeholder="analyst@domain.com">
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="regRememberMe" checked>
+                    <label for="regRememberMe">Keep me logged in on this device</label>
+                </div>
+                <button onclick="serverRequestToken()" style="width: 100%;" id="sendTokenBtn">Request Security Token</button>
+                <button class="secondary" onclick="closeAuthModal()" style="width: 100%; margin-top: 0.5rem;">Cancel</button>
+            </div>
+
+            <!-- Step 2: Verification Code -->
+            <div id="modalStep2" class="hidden">
+                <div class="form-group">
+                    <label>Enter 6-Digit Server Token Sent to Your Inbox</label>
+                    <input type="text" id="verificationInput" placeholder="123456" maxlength="6" style="text-align: center; font-size: 1.25rem; letter-spacing: 0.25rem;">
+                    <p style="color: #94a3b8; font-size: 0.75rem; margin-top: 0.5rem;" id="tokenHint">Live email dispatched via EmailJS.</p>
+                </div>
+                <div class="flex-row">
+                    <button class="secondary" onclick="backToStep1()" style="width: 50%;">Back</button>
+                    <button onclick="serverVerifyToken()" style="width: 50%;">Verify Token</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Profile Configuration -->
+            <div id="modalStep3" class="hidden">
+                <div class="form-group">
+                    <label>Role / Specialization</label>
+                    <select id="regRole">
+                        <option value="Security Analyst">Security Analyst</option>
+                        <option value="Penetration Tester">Penetration Tester</option>
+                        <option value="System Administrator">System Administrator</option>
+                        <option value="Hobbyist / Student">Hobbyist / Student</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Avatar URL (optional)</label>
+                    <input type="text" id="regAvatar" placeholder="https://example.com/avatar.jpg">
+                </div>
+                <button onclick="serverCompleteRegistration()" style="width: 100%;">Complete Registration</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration Modal -->
+    <div id="settingsModal" class="modal-overlay hidden">
+        <div class="modal">
+            <h2>Backend Integration Settings</h2>
+            <p style="color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.9rem;">Configure microservice endpoints and external options.</p>
+            <div class="form-group">
+                <label>Backend Synchronization Mode</label>
+                <select id="configBackendMode">
+                    <option value="simulation">Simulated Node Backend (In-Memory / LocalStorage)</option>
+                    <option value="rest">Connected REST API Endpoint</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>API Endpoint Base URL</label>
+                <input type="text" id="configApiUrl" placeholder="https://api.clscanner-enterprise.internal/v1">
+            </div>
+            <div class="flex-row">
+                <button class="secondary" onclick="toggleSettingsModal()" style="width: 50%;">Cancel</button>
+                <button onclick="saveSettings()" style="width: 50%;">Save Config</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scan Detail Report Modal -->
+    <div id="reportModal" class="modal-overlay hidden">
+        <div class="modal" style="max-width: 550px;">
+            <h2 id="reportTitle">Server Forensic Report</h2>
+            <p style="color: #94a3b8; margin-bottom: 1rem; font-size: 0.85rem;" id="reportTargetUrl">Target: --</p>
+            <div class="report-box" id="reportContent"></div>
+            <button onclick="closeReportModal()" style="width: 100%;">Close Report</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       4. INTEGRATED APPLICATION SCRIPT
+       ========================================================================== -->
+    <script>
+        // Server Handler Layer (Session Storage vs LocalStorage Persistence)
+        class MockBackendServer {
+            constructor() {
+                // Check both localStorage (Remember Me = active) and sessionStorage (Session only)
+                const storedLocal = localStorage.getItem('cl_server_db_v1');
+                const storedSession = sessionStorage.getItem('cl_server_db_v1');
+
+                if (storedLocal) {
+                    this.db = JSON.parse(storedLocal);
+                    this.isPersistent = true;
+                } else if (storedSession) {
+                    this.db = JSON.parse(storedSession);
+                    this.isPersistent = false;
+                } else {
+                    this.db = {
+                        user: { username: '', email: '', role: '', avatar: '', verified: false, rememberMe: true },
+                        config: { mode: 'simulation', apiUrl: 'https://api.clscanner-enterprise.internal/v1' },
+                        history: [],
+                        activeTokens: {}
+                    };
+                    this.isPersistent = true;
+                }
+            }
+
+            save(rememberMeOverride = null) {
+                if (rememberMeOverride !== null) {
+                    this.isPersistent = rememberMeOverride;
+                }
+
+                const jsonStr = JSON.stringify(this.db);
+                if (this.isPersistent) {
+                    localStorage.setItem('cl_server_db_v1', jsonStr);
+                    sessionStorage.removeItem('cl_server_db_v1');
+                } else {
+                    sessionStorage.setItem('cl_server_db_v1', jsonStr);
+                    localStorage.removeItem('cl_server_db_v1');
+                }
+            }
+
+            async verifyToken(email, tokenInput) {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        const validToken = this.db.activeTokens[email];
+                        if (validToken && validToken === tokenInput) {
+                            resolve({ success: true });
+                        } else {
+                            resolve({ success: false, message: 'Invalid or expired verification token.' });
+                        }
+                    }, 600);
+                });
+            }
+
+            async registerUser(userData, rememberMe = true) {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        this.db.user = { ...userData, verified: true, rememberMe: rememberMe };
+                        this.save(rememberMe);
+                        resolve({ success: true });
+                    }, 500);
+                });
+            }
+
+            async executeScan(rawUrl) {
+                return new Promise((resolve) => {
+                    setTimeout(async () => {
+                        let formattedUrl = rawUrl;
+                        if (!rawUrl.startsWith('http://') && !rawUrl.startsWith('https://')) {
+                            formattedUrl = 'https://' + rawUrl;
+                        }
+
+                        let parsedObj = new URL(formattedUrl);
+                        let hostname = parsedObj.hostname.toLowerCase();
+                        let pathname = parsedObj.pathname.toLowerCase();
+
+                        let flags = [];
+                        let riskScore = 0;
+
+                        // 1. Protocol Check
+                        if (parsedObj.protocol !== 'https:') {
+                            flags.push({ check: 'Transport Protocol', result: 'Insecure HTTP Protocol', weight: 20 });
+                            riskScore += 20;
+                        } else {
+                            flags.push({ check: 'Transport Protocol', result: 'Secure HTTPS Active', weight: 0 });
+                        }
+
+                        // 2. IP Host Check
+                        if (/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(hostname)) {
+                            flags.push({ check: 'Host Structure', result: 'Raw IP Address Used', weight: 45 });
+                            riskScore += 45;
+                        }
+
+                        // 3. Risky TLDs
+                        const riskyTlds = ['.xyz', '.top', '.zip', '.ru', '.gq', '.ml', '.cf', '.cn', '.tk', '.cc'];
+                        const matchedTld = riskyTlds.find(tld => hostname.endsWith(tld));
+                        if (matchedTld) {
+                            flags.push({ check: 'Top-Level Domain', result: `High-Risk TLD (${matchedTld})`, weight: 35 });
+                            riskScore += 35;
+                        } else {
+                            flags.push({ check: 'Top-Level Domain', result: 'Standard Trust TLD', weight: 0 });
+                        }
+
+                        // 4. Entropy calculation
+                        let len = hostname.length;
+                        let entropy = 0;
+                        if (len > 0) {
+                            let freq = {};
+                            for (let i = 0; i < len; i++) {
+                                let c = hostname[i];
+                                freq[c] = (freq[c] || 0) + 1;
+                            }
+                            for (let c in freq) {
+                                let p = freq[c] / len;
+                                entropy -= p * Math.log2(p);
+                            }
+                        }
+                        if (entropy > 4.2 && len > 12) {
+                            flags.push({ check: 'Entropy Analysis', result: `High Randomness / DGA Risk (${entropy.toFixed(2)})`, weight: 30 });
+                            riskScore += 30;
+                        }
+
+                        // 5. Phishing Keywords
+                        const keywords = ['login', 'signin', 'verify', 'account', 'banking', 'secure', 'update', 'support', 'wallet', 'auth'];
+                        const matchedKeywords = keywords.filter(kw => hostname.includes(kw) || pathname.includes(kw));
+                        if (matchedKeywords.length > 0) {
+                            flags.push({ check: 'Phishing Keywords', result: `Detected Intent Keywords (${matchedKeywords.join(', ')})`, weight: 30 });
+                            riskScore += 30;
+                        }
+
+                        // 6. Live DNS Lookup Proxy Simulation
+                        try {
+                            const res = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(hostname)}`);
+                            const dnsData = await res.json();
+                            if (dnsData.Status === 0 && dnsData.Answer) {
+                                flags.push({ check: 'Backend DNS Research', result: `Verified Active (${dnsData.Answer.length} Record(s))`, weight: 0 });
+                            } else {
+                                flags.push({ check: 'Backend DNS Research', result: 'Warning: Unresolved / Inactive Domain', weight: 25 });
+                                riskScore += 25;
+                            }
+                        } catch (e) {
+                            flags.push({ check: 'Backend DNS Research', result: 'Queried via Server Gateway', weight: 0 });
+                        }
+
+                        riskScore = Math.min(riskScore, 100);
+                        let status = riskScore >= 65 ? 'malicious' : (riskScore >= 30 ? 'suspicious' : 'safe');
+
+                        const record = {
+                            id: 'scan_' + Date.now(),
+                            timestamp: new Date().toISOString().replace('T', ' ').substring(0, 19),
+                            url: rawUrl,
+                            status: status,
+                            risk: riskScore + '%',
+                            flags: flags
+                        };
+
+                        this.db.history.unshift(record);
+                        this.save();
+                        resolve(record);
+                    }, 700);
+                });
+            }
+        }
+
+        const server = new MockBackendServer();
+        let activeTempEmail = '';
+        let activeTempUsername = '';
+        let activeRememberMe = true;
+        let pendingScanUrl = '';
+
+        // Initializer: Checks persistent / session login state
+        window.addEventListener('DOMContentLoaded', () => {
+            if (server.db.user && server.db.user.verified) {
+                showAppView();
+            } else {
+                showLandingView();
+            }
+        });
+
+        // View Controllers
+        function showLandingView() {
+            document.getElementById('landingView').classList.remove('hidden');
+            document.getElementById('appView').classList.add('hidden');
+        }
+
+        function showAppView() {
+            document.getElementById('landingView').classList.add('hidden');
+            document.getElementById('appView').classList.remove('hidden');
+            updateUI();
+
+            // Run pending hero scan if available
+            if (pendingScanUrl) {
+                document.getElementById('targetUrl').value = pendingScanUrl;
+                pendingScanUrl = '';
+                performServerScan();
+            }
+        }
+
+        // Hero Scan Handler for Landing Page
+        function handleHeroScan(e) {
+            e.preventDefault();
+            const inputVal = document.getElementById('heroUrlInput').value.trim();
+            if (inputVal) {
+                pendingScanUrl = inputVal;
+            }
+            openRegistrationModal();
+        }
+
+        // Modal Controllers
+        function openRegistrationModal() {
+            document.getElementById('authModal').classList.remove('hidden');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.add('hidden');
+        }
+
+        // Step 1: EmailJS Dispatch & Keep Logged In Capture
+        async function serverRequestToken() {
+            activeTempUsername = document.getElementById('regUsername').value.trim();
+            activeTempEmail = document.getElementById('regEmail').value.trim();
+            activeRememberMe = document.getElementById('regRememberMe').checked;
+
+            if (!activeTempUsername || !activeTempEmail || !activeTempEmail.includes('@')) {
+                alert('Please provide a valid username and email address.');
+                return;
+            }
+
+            const btn = document.getElementById('sendTokenBtn');
+            btn.disabled = true;
+            btn.innerHTML = `<span class="loader"></span>Sending Live Email...`;
+
+            const token = Math.floor(100000 + Math.random() * 900000).toString();
+            server.db.activeTokens[activeTempEmail] = token;
+            server.save(activeRememberMe);
+
+            const serviceID = "service_nusewys";
+            const templateID = "template_oq5uy3x";
+
+            const templateParams = {
+                email: activeTempEmail,
+                to_name: activeTempUsername,
+                passcode: token
+            };
+
+            try {
+                await emailjs.send(serviceID, templateID, templateParams);
+                alert(`Verification code sent to ${activeTempEmail}! Please check your inbox.`);
+                document.getElementById('tokenHint').textContent = `(Live email dispatched to ${activeTempEmail})`;
+                
+                document.getElementById('modalStep1').classList.add('hidden');
+                document.getElementById('modalStep2').classList.remove('hidden');
+                document.getElementById('indicatorStep1').classList.remove('active');
+                document.getElementById('indicatorStep2').classList.add('active');
+            } catch (error) {
+                console.error('EmailJS Error:', error);
+                alert('Failed to send verification code. Check console details.');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Request Security Token';
+            }
+        }
+
+        function backToStep1() {
+            document.getElementById('modalStep2').classList.add('hidden');
+            document.getElementById('modalStep1').classList.remove('hidden');
+            document.getElementById('indicatorStep2').classList.remove('active');
+            document.getElementById('indicatorStep1').classList.add('active');
+        }
+
+        // Step 2: Verification Check
+        async function serverVerifyToken() {
+            const tokenInput = document.getElementById('verificationInput').value.trim();
+            const res = await server.verifyToken(activeTempEmail, tokenInput);
+
+            if (!res.success) {
+                alert(res.message);
+                return;
+            }
+
+            document.getElementById('modalStep2').classList.add('hidden');
+            document.getElementById('modalStep3').classList.remove('hidden');
+            document.getElementById('indicatorStep2').classList.remove('active');
+            document.getElementById('indicatorStep3').classList.add('active');
+        }
+
+        // Step 3: Complete & Launch App
+        async function serverCompleteRegistration() {
+            const role = document.getElementById('regRole').value;
+            const avatar = document.getElementById('regAvatar').value.trim();
+
+            await server.registerUser({
+                username: activeTempUsername,
+                email: activeTempEmail,
+                role: role,
+                avatar: avatar
+            }, activeRememberMe);
+
+            closeAuthModal();
+            showAppView();
+        }
+
+        // Session Logout
+        function serverLogout() {
+            server.db.user.verified = false;
+            localStorage.removeItem('cl_server_db_v1');
+            sessionStorage.removeItem('cl_server_db_v1');
             showLandingView();
         }
 
