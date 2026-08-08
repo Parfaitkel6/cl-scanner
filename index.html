@@ -1206,6 +1206,14 @@
                 const configMode = this.db.config.mode;
                 const customApiUrl = this.db.config.apiUrl;
 
+                // Clean up malformed inputs (e.g., duplicate wrapping or brackets)
+                if (typeof rawUrl === 'string') {
+                    rawUrl = rawUrl.replace(/[{}]/g, '').trim();
+                    if (rawUrl.includes('https://') && rawUrl.indexOf('https://') !== rawUrl.lastIndexOf('https://')) {
+                        rawUrl = rawUrl.substring(0, rawUrl.indexOf('https://', 8));
+                    }
+                }
+
                 // Connected REST API Gateway integration routing
                 if (configMode === 'rest' && customApiUrl) {
                     try {
