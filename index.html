@@ -227,6 +227,50 @@
             margin-bottom: 0.4rem;
         }
 
+        /* Custom Toast Notifications */
+        .toast-container {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-width: 380px;
+            width: calc(100% - 3rem);
+            pointer-events: none;
+        }
+
+        .toast {
+            pointer-events: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-left: 4px solid var(--primary);
+            padding: 0.85rem 1.15rem;
+            border-radius: 0.5rem;
+            color: var(--text-main);
+            font-size: 0.875rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            animation: toastIn 0.25s ease-out forwards;
+        }
+
+        .toast.success { border-left-color: var(--status-safe); }
+        .toast.error { border-left-color: var(--status-risk); }
+        .toast.warning { border-left-color: var(--status-caution); }
+
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes toastOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(30px); }
+        }
+
         /* Segmented Auth Tabs */
         .auth-tabs {
             display: flex;
@@ -772,6 +816,9 @@
 </head>
 <body>
 
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
     <!-- ==========================================================================
        VIEW 1: LANDING PAGE (Logged Out)
        ========================================================================== -->
@@ -963,9 +1010,21 @@
 
 
     <!-- ==========================================================================
-       MODALS (Auth, Settings, Forensic Reports)
+       MODALS (Auth, Settings, Confirmation, Forensic Reports)
        ========================================================================== -->
     
+    <!-- Custom Confirmation Dialog Modal -->
+    <div id="confirmModal" class="modal-overlay hidden">
+        <div class="modal" style="max-width: 420px;">
+            <h2 id="confirmTitle">Confirm Action</h2>
+            <p id="confirmMessage" style="color: var(--text-muted); margin-top: 0.5rem; margin-bottom: 1.5rem; font-size: 0.9rem;">Are you sure you wish to proceed?</p>
+            <div class="flex-row">
+                <button class="btn btn-secondary" id="confirmCancelBtn" style="width: 50%;">Cancel</button>
+                <button class="btn btn-danger" id="confirmOkBtn" style="width: 50%;">Confirm</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Auth Modal -->
     <div id="authModal" class="modal-overlay hidden">
         <div class="modal">
@@ -1072,6 +1131,57 @@
        APPLICATION SCRIPT LOGIC
        ========================================================================== -->
     <script>
+        /* Toast & Notification System */
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+
+            let icon = 'ℹ️';
+            if (type === 'success') icon = '✅';
+            if (type === 'error') icon = '🚨';
+            if (type === 'warning') icon = '⚠️';
+
+            toast.innerHTML = `
+                <span style="font-size: 1.1rem; line-height: 1;">${icon}</span>
+                <div style="flex: 1; word-break: break-word;">${message}</div>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'toastOut 0.25s ease-in forwards';
+                setTimeout(() => toast.remove(), 250);
+            }, 4000);
+        }
+
+        /* Styled Confirmation Modal Handler */
+        function showConfirm(title, message, onConfirm) {
+            document.getElementById('confirmTitle').textContent = title;
+            document.getElementById('confirmMessage').textContent = message;
+
+            const modal = document.getElementById('confirmModal');
+            const okBtn = document.getElementById('confirmOkBtn');
+            const cancelBtn = document.getElementById('confirmCancelBtn');
+
+            modal.classList.remove('hidden');
+
+            const cleanup = () => {
+                modal.classList.add('hidden');
+                okBtn.onclick = null;
+                cancelBtn.onclick = null;
+            };
+
+            okBtn.onclick = () => {
+                cleanup();
+                onConfirm();
+            };
+
+            cancelBtn.onclick = () => {
+                cleanup();
+            };
+        }
+
         class MockBackendServer {
             constructor() {
                 const storedLocal = localStorage.getItem('cl_server_db_v1');
@@ -1354,19 +1464,19 @@
             activeRememberMe = document.getElementById('regRememberMe').checked;
 
             if (!activeTempEmail || !activeTempEmail.includes('@')) {
-                alert('Please enter a valid email address.');
+                showToast('Please enter a valid email address.', 'error');
                 return;
             }
 
             if (authMode === 'signup' && !activeTempUsername) {
-                alert('Please enter a username.');
+                showToast('Please enter an analyst username.', 'error');
                 return;
             }
 
             if (authMode === 'login') {
                 const existingUser = server.getUserByEmail(activeTempEmail);
                 if (!existingUser) {
-                    alert('No account associated with this email. Switch to "Sign Up" to register.');
+                    showToast('No account found for this email. Switch to "Sign Up" to register.', 'warning');
                     return;
                 }
                 activeTempUsername = existingUser.username;
@@ -1391,7 +1501,7 @@
 
             try {
                 await emailjs.send(serviceID, templateID, templateParams);
-                alert(`Security passcode sent to ${activeTempEmail}! Check your inbox.`);
+                showToast(`Passcode sent to ${activeTempEmail}! Check your inbox.`, 'success');
                 document.getElementById('tokenHint').textContent = `Passcode sent to ${activeTempEmail}`;
                 
                 document.getElementById('modalStep1').classList.add('hidden');
@@ -1400,7 +1510,7 @@
                 document.getElementById('indicatorStep2').classList.add('active');
             } catch (error) {
                 console.error('EmailJS Error:', error);
-                alert('Failed to send verification code. Please check your internet connection.');
+                showToast('Failed to send verification code. Check your connection or EmailJS limits.', 'error');
             } finally {
                 btn.disabled = false;
                 btn.textContent = authMode === 'login' ? 'Send Access Token' : 'Request Security Token';
@@ -1419,7 +1529,7 @@
             const res = await server.verifyToken(activeTempEmail, tokenInput);
 
             if (!res.success) {
-                alert(res.message);
+                showToast(res.message, 'error');
                 return;
             }
 
@@ -1428,8 +1538,9 @@
                 if (loginRes.success) {
                     closeAuthModal();
                     showAppView();
+                    showToast('Authenticated successfully.', 'success');
                 } else {
-                    alert(loginRes.message);
+                    showToast(loginRes.message, 'error');
                 }
             } else {
                 document.getElementById('modalStep2').classList.add('hidden');
@@ -1452,6 +1563,7 @@
 
             closeAuthModal();
             showAppView();
+            showToast('Account created and authenticated!', 'success');
         }
 
         function serverLogout() {
@@ -1460,6 +1572,7 @@
             }
             server.save();
             showLandingView();
+            showToast('Logged out of session.', 'info');
         }
 
         function toggleSettingsModal() {
@@ -1476,7 +1589,7 @@
             server.db.config.apiUrl = document.getElementById('configApiUrl').value.trim();
             server.save();
             toggleSettingsModal();
-            alert('Settings updated successfully.');
+            showToast('Backend configuration saved successfully.', 'success');
         }
 
         async function performServerScan() {
@@ -1485,7 +1598,7 @@
             const targetUrl = urlInput.value.trim();
 
             if (!targetUrl) {
-                alert('Please enter a target URL or domain.');
+                showToast('Please enter a target URL or domain to scan.', 'warning');
                 return;
             }
 
@@ -1498,6 +1611,7 @@
             urlInput.value = '';
             scanBtn.disabled = false;
             scanBtn.textContent = 'Execute Scan';
+            showToast('Scan complete and logged to audit table.', 'success');
         }
 
         function openReportModal(scanId) {
@@ -1527,7 +1641,7 @@
 
         function exportHistoryCSV() {
             if (server.db.history.length === 0) {
-                alert('No scan history to export.');
+                showToast('No scan history available to export.', 'info');
                 return;
             }
 
@@ -1543,14 +1657,20 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            showToast('Audit log exported to CSV.', 'success');
         }
 
         function clearHistory() {
-            if (confirm('Are you sure you want to purge all scan history?')) {
-                server.db.history = [];
-                server.save();
-                updateUI();
-            }
+            showConfirm(
+                'Purge Audit History',
+                'Are you sure you want to permanently delete all scan records? This action cannot be undone.',
+                () => {
+                    server.db.history = [];
+                    server.save();
+                    updateUI();
+                    showToast('Scan history purged.', 'info');
+                }
+            );
         }
 
         function updateUI() {
