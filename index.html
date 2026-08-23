@@ -1115,25 +1115,46 @@
        ========================================================================== -->
     <script>
         class MockBackendServer {
-            constructor() {
-                const storedLocal = localStorage.getItem('cl_server_db_v1');
-                const storedSession = sessionStorage.getItem('cl_server_db_v1');
+constructor() {
+    const storedLocal = localStorage.getItem('cl_server_db_v2');
+    const storedSession = sessionStorage.getItem('cl_server_db_v2');
 
-                if (storedLocal) {
-                    this.db = JSON.parse(storedLocal);
-                    this.isPersistent = true;
-                } else if (storedSession) {
-                    this.db = JSON.parse(storedSession);
-                    this.isPersistent = false;
-                } else {
-this.db = {
-    user: null,
-    registeredUsers: {},
-    // Change mode to 'rest' and paste your actual Render URL:
-    config: { mode: 'rest', apiUrl: 'https://clscanner-api.onrender.com' },
-    history: [],
-    activeTokens: {}
-};
+    if (storedLocal) {
+        this.db = JSON.parse(storedLocal);
+        this.isPersistent = true;
+    } else if (storedSession) {
+        this.db = JSON.parse(storedSession);
+        this.isPersistent = false;
+    } else {
+        this.db = {
+            user: null,
+            registeredUsers: {},
+            config: { 
+                mode: 'rest',
+                apiUrl: 'https://clscanner-api.onrender.com'
+            },
+            history: [],
+            activeTokens: {}
+        };
+        this.isPersistent = true;
+    }
+
+    if (!this.db.registeredUsers) {
+        this.db.registeredUsers = {};
+    }
+} else {
+    this.db = {
+        user: null,
+        registeredUsers: {},
+        config: { 
+            mode: 'rest', // Set mode to rest
+            apiUrl: 'https://clscanner-api.onrender.com' // Replace with your Render URL
+        },
+        history: [],
+        activeTokens: {}
+    };
+    this.isPersistent = true;
+}
                     this.isPersistent = true;
                 }
 
@@ -1141,21 +1162,21 @@ this.db = {
                     this.db.registeredUsers = {};
                 }
             }
+save(rememberMeOverride = null) {
+    if (rememberMeOverride !== null) {
+        this.isPersistent = rememberMeOverride;
+    }
 
-            save(rememberMeOverride = null) {
-                if (rememberMeOverride !== null) {
-                    this.isPersistent = rememberMeOverride;
-                }
-
-                const jsonStr = JSON.stringify(this.db);
-                if (this.isPersistent) {
-                    localStorage.setItem('cl_server_db_v1', jsonStr);
-                    sessionStorage.removeItem('cl_server_db_v1');
-                } else {
-                    sessionStorage.setItem('cl_server_db_v1', jsonStr);
-                    localStorage.removeItem('cl_server_db_v1');
-                }
-            }
+    const jsonStr = JSON.stringify(this.db);
+    if (this.isPersistent) {
+        // Change both 'v1' references to 'v2':
+        localStorage.setItem('cl_server_db_v2', jsonStr);
+        sessionStorage.removeItem('cl_server_db_v2');
+    } else {
+        sessionStorage.setItem('cl_server_db_v2', jsonStr);
+        localStorage.removeItem('cl_server_db_v2');
+    }
+} 
 
             getUserByEmail(email) {
                 if (!email) return null;
