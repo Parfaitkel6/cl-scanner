@@ -1126,13 +1126,14 @@
                     this.db = JSON.parse(storedSession);
                     this.isPersistent = false;
                 } else {
-                    this.db = {
-                        user: null,
-                        registeredUsers: {},
-                        config: { mode: 'simulation', apiUrl: 'https://api.clscanner-enterprise.internal/v1' },
-                        history: [],
-                        activeTokens: {}
-                    };
+this.db = {
+    user: null,
+    registeredUsers: {},
+    // Change mode to 'rest' and paste your actual Render URL:
+    config: { mode: 'rest', apiUrl: 'https://clscanner-api.onrender.com' },
+    history: [],
+    activeTokens: {}
+};
                     this.isPersistent = true;
                 }
 
