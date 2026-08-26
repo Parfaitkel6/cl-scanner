@@ -1088,10 +1088,6 @@
                     <option value="rest">Connected REST API Gateway</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label>API Endpoint Base URL</label>
-                <input type="text" id="configApiUrl" placeholder="https://api.clscanner-enterprise.internal/v1">
-            </div>
             <div class="flex-row">
                 <button class="btn btn-secondary" onclick="toggleSettingsModal()">Cancel</button>
                 <button class="btn btn-primary" onclick="saveSettings()">Save Configuration</button>
@@ -1556,13 +1552,12 @@ save(rememberMeOverride = null) {
             modal.classList.toggle('hidden');
             if (!modal.classList.contains('hidden')) {
                 document.getElementById('configBackendMode').value = server.db.config.mode;
-                document.getElementById('configApiUrl').value = server.db.config.apiUrl;
             }
         }
 
         function saveSettings() {
             server.db.config.mode = document.getElementById('configBackendMode').value;
-            server.db.config.apiUrl = document.getElementById('configApiUrl').value.trim();
+            server.db.config.apiUrl = 'https://clscanner-api.onrender.com';
             server.save();
             toggleSettingsModal();
             alert('Settings updated successfully.');
