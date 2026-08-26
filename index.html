@@ -20,6 +20,7 @@
             });
         })();
     </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         /* ==========================================================================
@@ -822,16 +823,16 @@
         <header>
             <nav>
                 <div class="brand-logo">
-                    <div class="shield-icon">🛡️</div>
+            <i data-lucide="shield-check"></i>
                     CL Scanner
                 </div>
                 <div class="navlinks">
-                    <a href="#problem">Threat Detection</a>
-                    <a href="#demo">Live Forensic Engine</a>
+                    <a href="#problem"><i data-lucide="radar"></i>Threat Detection</a>
+                    <a href="#demo"><i data-lucide="activity"></i>Live Forensic Engine</a>
                 </div>
                 <div class="nav-actions">
-                    <button class="btn btn-secondary" onclick="openAuthModal('login')">Log In</button>
-                    <button class="btn btn-primary" onclick="openAuthModal('signup')">Create Account</button>
+                    <button class="btn btn-secondary" onclick="openAuthModal('login')"><i data-lucide="log-in"></i>Log In</button>
+                    <button class="btn btn-primary" onclick="openAuthModal('signup')"><i data-lucide="user-plus"></i>Create Account</button>
                 </div>
             </nav>
         </header>
@@ -842,48 +843,48 @@
                 <h1>Verify URL legitimacy <span class="hl">before</span> you click, sign in, or pay.</h1>
                 <p class="lede">CL Scanner analyzes domain entropy, WHOIS heuristics, protocol vectors, and DNS resolution to flag malicious links in real-time.</p>
                 <div class="flex-row">
-                    <button class="btn btn-primary" onclick="openAuthModal('signup')">Start Free Scan</button>
-                    <a class="btn btn-secondary" href="#demo" style="text-align: center;">View Sample Output</a>
+                    <button class="btn btn-primary" onclick="openAuthModal('signup')"><i data-lucide="search"></i>Start Free Scan</button>
+                    <a class="btn btn-secondary" href="#demo" style="text-align: center;"><i data-lucide="terminal"></i> View Sample Output</a>
                 </div>
             </div>
 
             <div class="scan-card">
                 <div class="scan-gate">
-                    <span>🔒 Authenticate to run live backend security queries.</span>
+                    <span><i data-lucide="lock"></i>Authenticate to run live backend security queries.</span>
                 </div>
                 <form onsubmit="handleHeroScan(event)" class="scan-input-row">
                     <input type="text" id="heroUrlInput" placeholder="Enter URL (e.g. suspicious-link.com)">
-                    <button type="submit" class="btn btn-primary">Scan Target</button>
+                    <button type="submit" class="btn btn-primary"><i data-lucide="scan"></i>Scan Target</button>
                 </form>
             </div>
         </section>
 
         <div class="strip">
             <div class="wrap">
-                <span>⚡ Sub-4 second threat analysis</span>
-                <span>🔍 Deep entropy & heuristic check</span>
-                <span>💾 Persistent database audit logs</span>
+                <span><i data-lucide="zap"></i> Sub-4 second threat analysis</span>
+                <span><i data-lucide="search"></i>Deep entropy & heuristic check</span>
+                <span><i data-lucide="database"></i> Persistent database audit logs</span>
             </div>
         </div>
 
         <section id="problem">
             <div class="section-head">
-                <div class="eyebrow">Attack Vectors</div>
+                <div class="eyebrow"><i data-lucide="alert-triangle"></i>Attack Vectors</div>
                 <h2>Modern malicious sites mimic authentic brands seamlessly.</h2>
             </div>
             <div class="grid-3">
                 <div class="card-feature">
-                    <div class="num-icon">01</div>
+                    <div class="num-icon"><i data-lucide="globe-lock"></i></div>
                     <h3 style="margin-bottom: 0.5rem;">Zero Domain History</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem;">Newly registered domains with spoofed certificates trick standard browser checks.</p>
                 </div>
                 <div class="card-feature">
-                    <div class="num-icon">02</div>
+                    <div class="num-icon"><i data-lucide="binary"></i></div>
                     <h3 style="margin-bottom: 0.5rem;">Algorithmic Randomness</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem;">High-entropy DGAs generate thousands of temporary phishing links automatically.</p>
                 </div>
                 <div class="card-feature">
-                    <div class="num-icon">03</div>
+                    <div class="num-icon"><i data-lucide="network"></i></div>
                     <h3 style="margin-bottom: 0.5rem;">Obfuscated DNS</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem;">Fast-flux DNS masking hides malicious origin IPs behind legitimate proxy networks.</p>
                 </div>
@@ -892,7 +893,7 @@
 
         <section id="demo" style="padding-top: 0;">
             <div class="section-head">
-                <div class="eyebrow">Interactive Telemetry</div>
+                <div class="eyebrow"><i data-lucide="activity"></i>Interactive Telemetry</div>
                 <h2>Engineered for security analysts and cautious users.</h2>
             </div>
             <div class="demo-mock">
@@ -900,26 +901,26 @@
                     <span class="mock-dot"></span>
                     <span class="mock-dot"></span>
                     <span class="mock-dot"></span>
-                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); margin-left: 0.5rem;">telemetry-node-01.clscanner.internal</span>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); margin-left: 0.5rem;"><i data-lucide="terminal"></i>telemetry-node-01.clscanner.internal</span>
                 </div>
                 <div class="mock-body">
                     <div class="mock-row">
                         <span style="color: var(--text-main);">cl-marketplace-deals.xyz</span>
                         <span style="color: var(--text-muted);">High Entropy (4.52)</span>
                         <span style="color: var(--text-muted);">HTTPS (Self-Signed)</span>
-                        <div><span class="badge caution">Caution</span></div>
+                        <div><span class="badge caution"><i data-lucide="alert-triangle"></i>Caution</span></div>
                     </div>
                     <div class="mock-row">
                         <span style="color: var(--text-main);">wikipedia.org</span>
                         <span style="color: var(--text-muted);">Standard DNS</span>
                         <span style="color: var(--text-muted);">HTTPS Valid</span>
-                        <div><span class="badge safe">Safe</span></div>
+                        <div><span class="badge safe"><i data-lucide="shield-check"></i>Safe</span></div>
                     </div>
                     <div class="mock-row">
                         <span style="color: var(--text-main);">quickpay-checkout-auth.net</span>
                         <span style="color: var(--text-muted);">Phishing Keyword</span>
                         <span style="color: var(--text-muted);">Raw HTTP</span>
-                        <div><span class="badge risk">High Risk</span></div>
+                        <div><span class="badge risk"><i data-lucide="shield-alert"></i>High Risk</span></div>
                     </div>
                 </div>
             </div>
@@ -927,7 +928,7 @@
 
         <footer>
             <div class="brand-logo">
-                <div class="shield-icon">🛡️</div> CL Scanner Pro
+                <i data-lucide="shield-check"></i>CL Scanner Pro
             </div>
             <div>&copy; 2026 CL Scanner Threat Labs. All rights reserved.</div>
         </footer>
@@ -940,61 +941,60 @@
     <div id="appView" class="hidden">
         <header>
             <div class="brand-logo">
-                <div class="shield-icon">🛡️</div>
-                CL Scanner Pro <span style="font-size: 0.75rem; color: var(--accent-cyan); font-family: var(--font-mono); font-weight: 400; margin-left: 0.5rem;">[v2.4-SERVER]</span>
+                <i data- lucide="shield-check"></i>CL Scanner Pro <span style="font-size: 0.75rem; color: var(--accent-cyan); font-family: var(--font-mono); font-weight: 400; margin-left: 0.5rem;">[v2.4-SERVER]</span>
             </div>
             <div class="user-nav">
                 <div class="user-badge">
                     <div class="user-avatar" id="navUserAvatar">U</div>
                     <span id="navUsername">Analyst</span>
                 </div>
-                <button class="btn btn-secondary" onclick="toggleSettingsModal()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Settings</button>
-                <button class="btn btn-secondary" onclick="serverLogout()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Log Out</button>
+                <button class="btn btn-secondary" onclick="toggleSettingsModal()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;"><i data-lucide="swettings"></i>Settings</button>
+                <button class="btn btn-secondary" onclick="serverLogout()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;"><i data-lucide="log-out"></i>Log Out</button>
             </div>
         </header>
 
         <main>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="label">Total Target Scans</div>
+                    <div class="label"><i data-lucide="activity"></i>Total Target Scans</div>
                     <div class="value" id="statTotal">0</div>
                 </div>
                 <div class="stat-card">
-                    <div class="label">Clean / Verified Safe</div>
+                    <div class="label"><i data-lucide="shield-check"></i>Clean / Verified Safe</div>
                     <div class="value" style="color: var(--status-safe);" id="statSafe">0</div>
                 </div>
                 <div class="stat-card">
-                    <div class="label">Threat Vectors Flagged</div>
+                    <div class="label"><i data-lucide="shield-alert"></i>Threat Vectors Flagged</div>
                     <div class="value" style="color: var(--status-risk);" id="statThreats">0</div>
                 </div>
             </div>
 
             <div class="dashboard-card">
-                <h3>Run Heuristic & DNS Scan</h3>
+                <h3><i data-lucide="cpu"></i>Run Heuristic & DNS Scan</h3>
                 <p style="color: var(--text-muted); font-size: 0.875rem;">Executes real-time structural analysis, entropy scoring, and DNS resolution checks.</p>
                 <div class="scanner-input-group">
                     <input type="text" id="targetUrl" placeholder="Paste domain or complete URL (e.g., domain.com/login)">
-                    <button class="btn btn-primary" id="scanBtn" onclick="performServerScan()">Execute Scan</button>
+                    <button class="btn btn-primary" id="scanBtn" onclick="performServerScan()"><i data-lucide="radar"></i>Execute Scan</button>
                 </div>
             </div>
 
             <div class="dashboard-card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
-                    <h3 style="margin-bottom: 0;">Server Audit History</h3>
+                    <h3 style="margin-bottom: 0;"><i data-lucide="history"></i>Server Audit History</h3>
                     <div class="flex-row" style="flex: unset;">
-                        <button class="btn btn-secondary" onclick="exportHistoryCSV()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Export CSV</button>
-                        <button class="btn btn-danger" onclick="clearHistory()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Purge Logs</button>
+                        <button class="btn btn-secondary" onclick="exportHistoryCSV()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;"><i data-lucide="download"></i>Export CSV</button>
+                        <button class="btn btn-danger" onclick="clearHistory()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;"><i data-lucide="trash"></i>Purge Logs</button>
                     </div>
                 </div>
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Timestamp</th>
-                                <th>Target URL</th>
-                                <th>Verdict</th>
-                                <th>Threat Score</th>
-                                <th>Action</th>
+                                <th><i data-lucide="clock"></i>Timestamp</th>
+                                <th><i data-lucide="globe"></i>Target URL</th>
+                                <th><i data-lucide="shield"></i>Verdict</th>
+                                <th><i data-lucide="gauge"></i>Threat Score</th>
+                                <th><i data-lucide="sliders"></i>Action</th>
                             </tr>
                         </thead>
                         <tbody id="historyTableBody"></tbody>
@@ -1013,17 +1013,17 @@
     <div id="authModal" class="modal-overlay hidden">
         <div class="modal">
             <div class="auth-tabs">
-                <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Log In</button>
-                <button class="auth-tab" id="tabSignup" onclick="switchAuthTab('signup')">Sign Up</button>
+                <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')"><i data-lucide="log-in"></i>Log In</button>
+                <button class="auth-tab" id="tabSignup" onclick="switchAuthTab('signup')"><i data-lucide="user-plus"></i>Sign Up</button>
             </div>
 
             <h2 id="authModalTitle">Welcome Back</h2>
             <p style="color: var(--text-muted); margin-bottom: 1.25rem; font-size: 0.875rem;" id="authModalSub">Log into your security account via email verification token.</p>
             
             <div class="step-indicator" id="stepIndicator">
-                <span id="indicatorStep1" class="active">1. Credentials</span>
-                <span id="indicatorStep2">2. Verification</span>
-                <span id="indicatorStep3" class="hidden">3. Profile</span>
+                <span id="indicatorStep1" class="active"><i data-lucide="key-round"></i>1. Credentials</span>
+                <span id="indicatorStep2"><i data-lucide="shield-check"></i>2. Verification</span>
+                <span id="indicatorStep3" class="hidden"><i data-lucide="user"></i>3. Profile</span>
             </div>
 
             <!-- Step 1: Input -->
@@ -1105,6 +1105,7 @@
             <button class="btn btn-primary" onclick="closeReportModal()" style="width: 100%;">Close Report</button>
         </div>
     </div>
+
 
 
     <!-- ==========================================================================
@@ -1384,6 +1385,7 @@ save(rememberMeOverride = null) {
         function openAuthModal(mode = 'login') {
             switchAuthTab(mode);
             document.getElementById('authModal').classList.remove('hidden');
+        if (window.lucide) { lucide.createIcons (); }
         }
 
         function closeAuthModal() {
@@ -1553,6 +1555,7 @@ save(rememberMeOverride = null) {
             modal.classList.toggle('hidden');
             if (!modal.classList.contains('hidden')) {
                 document.getElementById('configBackendMode').value = server.db.config.mode;
+            if (window.lucide) { lucide.createIcons(); }
             }
         }
 
@@ -1579,9 +1582,12 @@ save(rememberMeOverride = null) {
 
             await server.executeScan(targetUrl);
             updateUI();
+            //Reset button state & re-initialize icons 
+            scanBtn.disabled = false;
+            scanBtn.innerHTML = '<i data-lucide="radar"></i>Execute scan';
+                if (window.lucide) { lucide.createIcons(); }
 
             urlInput.value = '';
-            scanBtn.disabled = false;
             scanBtn.textContent = 'Execute Scan';
         }
 
@@ -1678,6 +1684,19 @@ save(rememberMeOverride = null) {
                 tbody.appendChild(tr);
             });
         }
+        // Render all Lucide vector icons as soon as the DOM loads
+        document.addEventListener("DOMContentLoaded", () =>{
+            if (window.lucide) {
+                lucide.createicons();
+            }
+        });
+
+        document.addEventListener(DOMContentLoaded"' () => {
+            if (window.lucide) {
+            lucide.createIcons();
+        }
+        });
+        
     </script>
 </body>
 </html>
