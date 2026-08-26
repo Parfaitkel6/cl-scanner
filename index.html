@@ -1584,11 +1584,10 @@ save(rememberMeOverride = null) {
             updateUI();
             //Reset button state & re-initialize icons 
             scanBtn.disabled = false;
-            scanBtn.innerHTML = '<i data-lucide="radar"></i>Execute scan';
+            scanBtn.innerHTML = '<i data-lucide="radar"></i> Execute scan';
                 if (window.lucide) { lucide.createIcons(); }
 
             urlInput.value = '';
-            scanBtn.textContent = 'Execute Scan';
         }
 
         function openReportModal(scanId) {
@@ -1610,6 +1609,7 @@ save(rememberMeOverride = null) {
             });
 
             document.getElementById('reportModal').classList.remove('hidden');
+            if (window.lucide) { lucide.createIcons(); }
         }
 
         function closeReportModal() {
@@ -1687,16 +1687,10 @@ save(rememberMeOverride = null) {
         // Render all Lucide vector icons as soon as the DOM loads
         document.addEventListener("DOMContentLoaded", () =>{
             if (window.lucide) {
-                lucide.createicons();
+                lucide.createIcons();
             }
         });
 
-        document.addEventListener(DOMContentLoaded", () => {
-            if (window.lucide) {
-            lucide.createIcons();
-        }
-        });
-        
     </script>
 </body>
 </html>
