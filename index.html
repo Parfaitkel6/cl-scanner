@@ -1142,6 +1142,7 @@ constructor() {
     if (!this.db.registeredUsers) {
         this.db.registeredUsers = {};
     }
+}
 save(rememberMeOverride = null) {
     if (rememberMeOverride !== null) {
         this.isPersistent = rememberMeOverride;
