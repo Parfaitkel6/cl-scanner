@@ -1142,26 +1142,6 @@ constructor() {
     if (!this.db.registeredUsers) {
         this.db.registeredUsers = {};
     }
-} else {
-    this.db = {
-        user: null,
-        registeredUsers: {},
-        config: { 
-            mode: 'rest', // Set mode to rest
-            apiUrl: 'https://clscanner-api.onrender.com' // Replace with your Render URL
-        },
-        history: [],
-        activeTokens: {}
-    };
-    this.isPersistent = true;
-}
-                    this.isPersistent = true;
-                }
-
-                if (!this.db.registeredUsers) {
-                    this.db.registeredUsers = {};
-                }
-            }
 save(rememberMeOverride = null) {
     if (rememberMeOverride !== null) {
         this.isPersistent = rememberMeOverride;
