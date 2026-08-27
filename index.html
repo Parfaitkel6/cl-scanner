@@ -1710,6 +1710,28 @@ save(rememberMeOverride = null) {
       Clerk.openSignIn();
     }
   });
+
+        async function runScan(targetUrl) {
+    if (!Clerk.user) {
+        Clerk.openSignIn();
+        return;
+    }
+
+    // Retrieve the active Clerk JWT session token
+    const token = await Clerk.session.getToken();
+
+    const response = await fetch('https://clscanner-api.onrender.com/scan', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Sends token to Render
+        },
+        body: JSON.stringify({ targetUrl })
+    });
+
+    const data = await response.json();
+    console.log('Scan Results:', data);
+}
         
 </script>
         
